@@ -2,14 +2,16 @@
   <div id="layout-tag">
     <navs />
     <nuxt />
+    <footer-bar />
   </div>
 </template>
 <script>
 import Navs from '~/components/Navs.vue'
-
+import FooterBar from '~/components/FooterBar.vue'
 export default {
   components: {
-    Navs
+    Navs,
+    FooterBar
   }
 }
 </script>

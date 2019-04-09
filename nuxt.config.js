@@ -28,6 +28,7 @@ module.exports = {
   ** Global CSS
   */
   css: [
+    '@/assets/style.css'
   ],
 
   /*
@@ -43,7 +44,7 @@ module.exports = {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     // Doc: https://bootstrap-vue.js.org/docs/
-    // 'bootstrap-vue/nuxt',
+    'bootstrap-vue/nuxt',
   ],
   /*
   ** Axios module configuration
