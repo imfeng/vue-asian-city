@@ -87,7 +87,16 @@ export default {
     //     // console.log(data);
     //   });
     this.$axios.$get(this.apiServer + "/race168/vv16888/api.php?type=A1")
-    .then(res => console.log(res));
+    .then(res => {
+      console.log(res);
+      if(res instanceof Object) {
+        data = res['data'];
+        if(data instanceof Array) {
+          this.lottos = data[0];
+          console.log(this.lottos);
+        }
+      }
+    });
     // ! meth 3
     // const url = this.apiServer + '?type=A1';
     // fetch(url, {mode: 'no-cors'}) // for local test use-only
