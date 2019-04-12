@@ -6,13 +6,20 @@
     <pre>here u r RAW</pre>
     <pre>
       {{lottos.opencode}}
+      <!-- 期號 -->
+      {{ lottos.expect }} 
       {{lottos.opentime}}
       {{lottos.interval}}
-     </pre>
-
+    </pre>
+    <!-- TODO: 歷史資料呈現  (pre tag 直接json噴出來，table (tr/td)顯示)  -->
+    <!-- TODO: 聲音開關? vuex? -->
     <section>
-      <div class="lotto-num" v-for="e in lottoNum" :key="">{{ e }}</div>
+      <!-- lotto num balls -->
+      <div class="lotto-num" v-for="e in lottoNum" :key>{{ e }}</div>
     </section>
+    <!-- countdown -->
+    <!-- TODO timer count distance till interval end -->
+    <div class="timer">{{ countdownTimeRemain }}</div>
   </div>
 </template>
 
@@ -21,7 +28,11 @@ export default {
   props: ["apiServer", "lottoType", "rows"],
   data() {
     return {
+      countdownTimeRemain: 75,
+      countdownMin: 1,
+      countdownSec: 15,
       lottos: {
+        //! fake data
         endTime: "14400",
         expect: "2019041200437",
         gameId: "A1",
@@ -77,18 +88,24 @@ export default {
     //   console.log(data)
     //   //   this.lottos = ['asd','asd','asd']
     // })
+
+    // TODO : setInterval 1000ms update time
   },
   methods: {
     // todo: time's up call update() => lottos. $data
     // todo: if update() => data same reupdate in 100ms?
     // todo: count down beep-sound
+    // todo: VUEX may solve too many update at same time (exactly only 5, async can handle it?)
   },
-  computed:{
+  computed: {
     lottoNum: function() {
-        return this.lottos.opencode.split(',')
+      return this.lottos.opencode.split(",");
       //   .sort((a, b)=>  a - b)
-      //? may must not sort 
-      } 
+      //? may must not sort
+    }
+    expireTime: function() {
+      return new Date(lottos.opentime).getTime()
+    }
   }
 };
 </script>
