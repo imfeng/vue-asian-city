@@ -22,7 +22,7 @@
                         <li class="mr-lg-4 mr-3 active"><a href="/">首頁</a></li>
                         <li class="mr-lg-4 mr-3"><a href="/about" class="scroll">關於我們</a></li>
                         <li class="mr-lg-4 mr-3"><a href="/news" class="scroll">最新消息</a></li>
-                            <li class="mr-lg-4 mr-3"><a href="/lotto" class="scroll">彩種</a></li>
+                            <li class="mr-lg-4 mr-3"><a href="/lotto-single" class="scroll">彩種</a></li>
                         <li><a href="#contact" class="scroll">語言</a></li>
                     </ul>
                 </nav>

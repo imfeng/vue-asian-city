@@ -3,8 +3,6 @@ const pkg = require('./package')
 
 module.exports = {
   mode: 'universal',
-
-
   /*
   ** Headers of the page
   */
@@ -59,7 +57,8 @@ module.exports = {
   },
 
   proxy: [
-    ['/api', { target: 'http://knem.chickenkiller.com' }]
+    ['/api',
+      { target: 'http://knem.chickenkiller.com', pathRewrite: { '^/api-service': '' } }]
 ],
   /*
   ** Build configuration

@@ -1,7 +1,9 @@
 // TODO: change page by url #tag change
 // TODO: get api
 <template>
-  <lottoApiVue :api-server="apiServer" lottoType="A1" rows="25"/>
+<no-ssr placeholder="Loading...">
+    <lottoApiVue :api-server="apiServer" lottoType="A1" rows="25"/>
+</no-ssr>
 </template>
 
 <script>
@@ -19,8 +21,10 @@ export default {
   watch: {},
   data() {
     return {
-      apiServer: "http://knem.chickenkiller.com/race168/vv16888/api.php"
-    };
+      // apiServer: "http://knem.chickenkiller.com/race168/vv16888/api.php"
+      apiServer: "/api-service"
+
+  };
   },
   methods: {
     aest: function() {

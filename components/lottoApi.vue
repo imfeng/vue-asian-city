@@ -33,16 +33,27 @@ export default {
       countdownSec: 15,
       lottos: {
         //! fake data
-        endTime: "14400",
-        expect: "2019041200437",
-        gameId: "A1",
-        interval: "75",
+        // endTime: "14400",
+        // expect: "2019041200437",
+        // gameId: "A1",
+        // interval: "75",
+        // no: 1,
+        // opencode: "8,10,4,7,5,3,1,6,2,9",
+        // opendate: "20190412",
+        // opentime: "2019-04-12 17:05:01",
+        // opentimestamp: 1555059901,
+        // startTime: "28800",
+        // type: "A"
+        endTime: "0",
+        expect: "0",
+        gameId: "0",
+        interval: "0",
         no: 1,
-        opencode: "8,10,4,7,5,3,1,6,2,9",
-        opendate: "20190412",
-        opentime: "2019-04-12 17:05:01",
+        opencode: "?",
+        opendate: "0",
+        opentime: "0",
         opentimestamp: 1555059901,
-        startTime: "28800",
+        startTime: "0",
         type: "A"
         //   @lottos {"data":[{"no":1,
         // "expect":"2019041200391",
@@ -65,12 +76,9 @@ export default {
     //   console.log(res);
     // });
     // ! meth2
-    // fetch("/api/race168/vv16888/api.php?type=A1", {
+    
+    // fetch(this.apiServer + "/race168/vv16888/api.php?type=A1", {
     //   method: "GET",
-    //   headers: {
-    //     "Content-type": "text/html"
-    //     // token: ""
-    //   },
     //   mode: "no-cors",
     // //   body: JSON.stringify()//data
     // })
@@ -78,13 +86,14 @@ export default {
     //   .then(data => {
     //     // console.log(data);
     //   });
+    this.$axios.$get(this.apiServer + "/race168/vv16888/api.php?type=A1")
+    .then(res => console.log(res));
     // ! meth 3
-    // console.log(this.apiServer + '?type=A1')
-    // fetch(this.apiServer + '?type=A1'
-    // , {mode: 'no-cors'}) // for local test use-only
-    // .then(response => response.json())
+    // const url = this.apiServer + '?type=A1';
+    // fetch(url, {mode: 'no-cors'}) // for local test use-only
+    // // .then(response => response.json())
     // .then(data=> {
-    //     this.lottos = data
+    //   //this.lottos = data
     //   console.log(data)
     //   //   this.lottos = ['asd','asd','asd']
     // })
@@ -102,7 +111,7 @@ export default {
       return this.lottos.opencode.split(",");
       //   .sort((a, b)=>  a - b)
       //? may must not sort
-    }
+    },
     expireTime: function() {
       return new Date(lottos.opentime).getTime()
     }
