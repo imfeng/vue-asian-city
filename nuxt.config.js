@@ -50,6 +50,9 @@ module.exports = {
   ** Axios module configuration
   */
   axios: {
+    // baseURL: 'http://knem.chickenkiller.com/race168/vv16888',
+    proxyHeaders: false,
+    credentials: false
     // See https://github.com/nuxt-community/axios-module#options
   },
 
@@ -62,5 +65,12 @@ module.exports = {
     */
     extend(config, ctx) {
     }
+  },
+  generate: {
+    routes: [
+      '/lotto/A1',
+      '/lotto/A2',
+      '/lotto/A3'
+    ]
   }
 }
