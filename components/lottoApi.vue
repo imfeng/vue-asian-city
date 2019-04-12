@@ -90,7 +90,7 @@ export default {
     .then(res => {
       console.log(res);
       if(res instanceof Object) {
-        data = res['data'];
+        let data = res['data'];
         if(data instanceof Array) {
           this.lottos = data[0];
           console.log(this.lottos);
