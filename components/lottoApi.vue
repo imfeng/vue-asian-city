@@ -3,7 +3,16 @@
     <!-- ! nav should have padding  -->
     <h1>no-use</h1>
     <h1>{{apiServer}}</h1>
-    <pre>hey</pre>
+    <pre>here u r RAW</pre>
+    <pre>
+      {{lottos.opencode}}
+      {{lottos.opentime}}
+      {{lottos.interval}}
+     </pre>
+
+    <section>
+      <div class="lotto-num" v-for="e in lottoNum" :key="">{{ e }}</div>
+    </section>
   </div>
 </template>
 
@@ -12,19 +21,31 @@ export default {
   props: ["apiServer", "lottoType", "rows"],
   data() {
     return {
-      lottos: []
-      //   @lottos {"data":[{"no":1,
-                          // "expect":"2019041200391",
-                          // "opencode":"8,6,1,7,10,5,2,4,9,3",
-                          // "opentime":"2019-04-12 16:07:30",
-                          // "opentimestamp":1555056450,
-                          // "opendate":"20190412",
-                          // "type":"A"
-                          // ,"gameId":"A1",
-                          // "startTime":"28800",
-                          // "endTime":"14400",
-                          // "interval":"75"
-            // }],"rows":1}
+      lottos: {
+        endTime: "14400",
+        expect: "2019041200437",
+        gameId: "A1",
+        interval: "75",
+        no: 1,
+        opencode: "8,10,4,7,5,3,1,6,2,9",
+        opendate: "20190412",
+        opentime: "2019-04-12 17:05:01",
+        opentimestamp: 1555059901,
+        startTime: "28800",
+        type: "A"
+        //   @lottos {"data":[{"no":1,
+        // "expect":"2019041200391",
+        //* "opencode":"8,6,1,7,10,5,2,4,9,3",
+        //* "opentime":"2019-04-12 16:07:30",
+        // "opentimestamp":1555056450,
+        // "opendate":"20190412",
+        // "type":"A"
+        // ,"gameId":"A1",
+        // "startTime":"28800",
+        // "endTime":"14400",
+        //* "interval":"75"
+        // }],"rows":1}
+      }
     };
   },
   mounted() {
@@ -57,10 +78,17 @@ export default {
     //   //   this.lottos = ['asd','asd','asd']
     // })
   },
-  methods:{
-    // todo: time's up call update()
+  methods: {
+    // todo: time's up call update() => lottos. $data
     // todo: if update() => data same reupdate in 100ms?
     // todo: count down beep-sound
+  },
+  computed:{
+    lottoNum: function() {
+        return this.lottos.opencode.split(',')
+      //   .sort((a, b)=>  a - b)
+      //? may must not sort 
+      } 
   }
 };
 </script>
