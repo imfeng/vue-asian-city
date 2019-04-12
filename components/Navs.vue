@@ -32,7 +32,7 @@
 <!-- //navigation-->
 </template>
 
-<style lang="scss">
+<style > 
     #main-nav {
         text-align: center;
     }
