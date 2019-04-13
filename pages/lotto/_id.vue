@@ -90,7 +90,7 @@ export default {
       maplist: [{ type: "A1" }, { type: "A2" }, { type: "A3" }],
       item: {},
       catlist: [],
-      countdownRemain: 998000,
+      countdownRemain: -1,
       volume: 0.5
     };
   },

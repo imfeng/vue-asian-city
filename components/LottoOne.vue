@@ -72,7 +72,7 @@ export default {
         break;
     }
     return {
-      countdownRemain: 998000,
+      countdownRemain: -1,
       volume: 0.5,
       didLoad: false,
       item: {
