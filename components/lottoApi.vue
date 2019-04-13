@@ -11,16 +11,18 @@
       {{lottos.opentime}}
       {{lottos.interval}}
     </pre>
-    <h1 class="timer">倒數：{{countdownTimeRemain}}</h1>
+    <h1 class="timer">倒數：{{ countdownTimeShow }}</h1>
     <!-- TODO: 歷史資料呈現  (pre tag 直接json噴出來，table (tr/td)顯示)  -->
     <!-- TODO: 聲音開關? vuex? -->
     <section>
       <!-- lotto num balls -->
-      <div class="lotto-num" :v-for="e in lottoNum">{{ e }}</div>
+      <div class="lotto-num" v-for="e in lottoNum">{{ e }}</div>
     </section>
     <!-- countdown -->
     <!-- TODO timer count distance till interval end -->
     <div class="timer">{{ countdownTimeRemain }}</div>
+
+    <!-- <audio src="beep.mp3" controls ></audio> -->
   </div>
 </template>
 
@@ -29,7 +31,7 @@ export default {
   props: ["apiServer", "lottoType", "rows"],
   data() {
     return {
-      countdownTimeRemain: 75, // lol
+      countdownTimeRemain: 74000, // lol
       // countdownMin: 1,
       // countdownSec: 15,
       lottos: {
@@ -64,14 +66,20 @@ export default {
   },
   mounted() {
     // TODO : setInterval 1000ms update time
+    var audio = new Audio("beep.mp3");
+    audio.volume = 0.5;
     setInterval(() => {
       let expireTime =
         new Date(this.lottos.opentime).getTime() + this.lottos.interval * 1000;
       let now = new Date().getTime();
 
       this.countdownTimeRemain = expireTime - now;
+      if (this.countdownTimeRemain < 9000) {
+        audio.play();
+      }
       //? seems no need excepttion handle, itll back to here  :bind=opentime
-      if (this.countdownTimeRemain < 0) { //? <999
+      if (this.countdownTimeRemain < 0) {
+        //? <999
         // this.countdownTimeRemain = 0;
         this.updateApi();
       }
@@ -105,8 +113,8 @@ export default {
       //   .sort((a, b)=>  a - b)
       //? may must not sort
     },
-    countdownTimeRemain: function() {
-      // return new Date(this.lottos.opentime).getTime() + this.lottos.interval * 1000
+    countdownTimeShow: function() {
+      return Math.floor(this.countdownTimeRemain/1000) + 1 
     }
   }
 };
