@@ -24,6 +24,10 @@ async function start() {
     res.send('Hello World!');
   });
   // Give nuxt middleware to express
+  // proxy api requests
+  if (process.server) {
+    config.baseURL = `http://${process.env.HOST || 'localhost'}:${process.env.PORT || 3000}`
+  }
   app.use(nuxt.render)
   
 

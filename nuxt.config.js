@@ -4,7 +4,6 @@ const webpack = require('webpack')
 
 module.exports = {
   mode: 'universal',
-
   /*
   ** Headers of the page
   */
@@ -45,6 +44,7 @@ module.exports = {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    '@nuxtjs/proxy',
     // Doc: https://bootstrap-vue.js.org/docs/
     'bootstrap-vue/nuxt',
   ],
@@ -56,8 +56,15 @@ module.exports = {
     proxyHeaders: false,
     credentials: false
     // See https://github.com/nuxt-community/axios-module#options
+    // baseURL: 'http://knem.chickenkiller.com/race168/vv16888/api.php',
+    // proxyHeaders: false,
+    // credentials: false
   },
 
+  proxy: [
+    ['/api',
+      { target: 'http://knem.chickenkiller.com', pathRewrite: { '^/api-service': '' } }]
+],
   /*
   ** Build configuration
   */
@@ -65,6 +72,9 @@ module.exports = {
     /*
     ** You can extend webpack config here
     */
+   vendor: ['axios']
+   ,
+
     extend(config, ctx) {
     },
     vendor: ['bootstrap'],
