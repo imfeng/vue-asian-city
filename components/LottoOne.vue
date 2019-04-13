@@ -2,18 +2,20 @@
   <div class="col-lg-4 ltt-cont" :key="gameId">
     
     <div class="agileits-services-grids mt-lg-0 mt-md-0 mt-5">
+
       <template v-if="!didLoadData">
-        <b-spinner variant="primary" label="Spinning"></b-spinner>
+        <b-spinner class="ltt-spinner" variant="primary" label="Spinning"></b-spinner>
       </template>
       <template v-else>
         <p class="ltt-seris">{{item.expect}}</p>
-        <p class="ltt-seris-desc">全天961期 當前159期 剩餘802期</p>
+        <p class="ltt-seris-desc">
+          全天{{item.maxSeries}}期 当前{{item.currentSeries}}期 剩余{{item.maxSeries-item.currentSeries}}期</p>
         <div class="ltt-icons">
             <b-button variant="link" size="sm"><fa :icon="['fas', 'info']" /></b-button>
             <b-button variant="link" size="sm"><fa :icon="['fas', 'bell']" /></b-button>
 
         </div>
-        <h4 class="ltt-title mt-4 mb-4">
+        <h4 class="ltt-title mt-4 mb-1">
 
           {{item.title}}<img class="countdown-img" :src="item.cimg" />
 
@@ -27,10 +29,9 @@
               <div><span>{{code}}</span></div>
             </div>
           </div>
-
         </div>
         <p class="ltt-time">{{item.opentime}}</p>
-        <p class="ltt-countdown">下期倒数： 00:00:22 </p>
+        <p class="ltt-countdown">下期倒数：00:00:22 </p>
         <!-- <button @click="ballStartRotate('balls-'+item.gameId)">click</button> -->
       </template>
 
@@ -54,12 +55,29 @@
 export default {
   props: ["gameId", 'title', 'interval' ],
   data() {
+    let maxSeries = 0;
+    switch (this.interval) {
+      case '75':
+        maxSeries = 961;
+        break;
+      case '120':
+        maxSeries = 601;
+        break;
+      case '300':
+        maxSeries = 241;
+        break;
+      default:
+        break;
+    }
     return {
+      
       didLoadData: false,
       item: {
-          cimg: require("~/assets/images/c" + this.interval +".png"),
-          title: this.title,
-          gameId: this.gameId,
+        maxSeries: maxSeries,
+        currentSeries: 0,
+        cimg: require("~/assets/images/c" + this.interval +".png"),
+        title: this.title,
+        gameId: this.gameId,
 
       }
     };
@@ -75,6 +93,7 @@ export default {
           Object.assign(this.item, data[0]);
           // console.log(this.item);
           this.item['codes'] = this.item['opencode'].split(',');
+          this.item['currentSeries'] = this.item['expect'].slice(-3);
           this.didLoadData = true;
           setTimeout(() => {
             this.ballStartRotate('balls-'+this.gameId);
@@ -88,20 +107,20 @@ export default {
     ballStartRotate: function(eid) {
 
       eid = '#' + eid;
-      console.log(eid);
+      // console.log(eid);
 
       let $ball = $( eid +' > div');
-      console.log($ball)
+      // console.log($ball)
       let gutter= 0;
       let opt = {
         // standard foundation guttering
-        ballHold: $(eid).width() + (gutter * 2), // width of the column they're sat in
+        ballHold: $(eid).width() + (gutter * 1.5), // width of the column they're sat in
         diameter: ($ball.height() + 10), // width/height of ball + 10px for spacin
         perimeter: Math.PI, //  ratio of the circumference of a circle to its diameter
         // how many balls
         n: $ball.length,
         // max amount of balls per line, 11 is a nice fit
-        total: 5,
+        total: ($ball.length >= 5)?5:3,
         // base
         i: 0,
       };
@@ -129,7 +148,7 @@ export default {
       // rotate the balls
       $ball.eq(opt.i).css({
           transition: transition,
-          transform: 'translateX(' + distance + 'px)',
+          transform: 'translateX(' + 0 + 'px)',
           top: depth * opt.diameter,
           opacity: opacity
 
@@ -171,6 +190,10 @@ export default {
     padding: 1.5rem 1rem;
     border-radius: 6px;
 }
+.ltt-spinner.text-primary {
+  color: #ccb520 !important;
+  
+}
 .ltt-icons {
   /* float: right; */
   position: absolute;
@@ -201,8 +224,8 @@ export default {
   font-size: .5rem;
 }
 .countdown-img {
-    position: absolute;
-    // display: block;
+    // position: absolute;
+    display: block;
     margin: 0 auto;
     width: 90px;
     right: -.5rem;
@@ -225,20 +248,55 @@ $medium-space: 20px;
 $large-space: 40px;
 $xlarge-space: 60px;
 $lottoball: 40px;
-[id^=balls-] {
-  min-height: 110px;
+
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {  $lottoball: 60px }
+.ltt-cont [id^=balls-] {
+  // min-height: 110px;
   width: 100%;
   position: relative;
 }
-.ball {
-//     position: relative;
-//     display: inline-block;
-// margin: 5px;
+.ltt-cont {
+  
+// Extra small devices (portrait phones, less than 576px)
+@media (max-width: 767.98px) {  
+  $lottoball: 60px;
+  .ball {
+    left: -($lottoball * 1.5);
+    width: $lottoball;
+    height: $lottoball;
+    > span {
+      width: ($lottoball / 1.75);
+      height: ($lottoball / 1.75);
+      line-height: ($lottoball / 2);
+    }
+	}
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {  
+  $lottoball: 40px;
+  .ball {
+    left: -($lottoball * 1.5);
+    width: $lottoball;
+    height: $lottoball;
+    > span {
+      width: ($lottoball / 1.75);
+      height: ($lottoball / 1.75);
+      line-height: ($lottoball / 2);
+    }
+	}  
+}
+  .ball {
+    // position: relative;
+    display: inline-block;
+margin: 5px;
   opacity: 0;
   left: -($lottoball * 1.5);
-  position: absolute;
+  // position: absolute;
   bottom: 55px;
-	
+	transform: translateX(-200px);
 	width: $lottoball;
 	height: $lottoball;
 	background: #004E99;
@@ -286,5 +344,5 @@ $lottoball: 40px;
 	&.yellow {
 		background: linear-gradient(to right, #ffe259, #ffa751);
 	}
-}
+}}
 </style>

@@ -1,0 +1,371 @@
+<template>
+<div id="page-lotto">
+  <section class="banner-cont container-fluid">
+    
+    <img class="banner-sub-img" :src="logo" />
+
+  </section>
+  <section id="lotto" class="container-fluid ">
+    <div class="text-left container">
+      <div class="row ">
+        <div class="col-md-9">
+          <div class="resultheader">
+            
+            <div v-if="didLoad" class="row">
+                <h4>
+                期号：
+                <span id="Clock" class="txtbold"><span class="txtbold">20190413556, 2019-04-13 20:03:45</span></span>
+                </h4>
+                <div v-bind:id="'balls-'+gameId" class="balls small-12 medium-3 columns">
+                    <div class="ball yellow" v-for="code in item.codes">
+                    <div><span>{{code}}</span></div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 resultheader">
+          <h4 class="resulttxt2">距离下次开彩</h4>
+          <div class="countdown">00:00:06</div>
+        </div>
+      </div>
+    </div>
+  </section>
+    <section class="lotto-history container-fluid">
+        <div class="text-center container">
+            <h3>历史开彩清单</h3>
+        </div>
+        
+        <div class="table-responsive">
+
+            <!--Table-->
+            <table class="table">
+
+                <!--Table head-->
+                <thead>
+                <tr>
+                    <th class="d-none d-sm-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                    <th class="th-sm">编号</th>
+                    <th class="th-sm">日期</th>
+                    <th class="th-sm">期号</th>
+                </tr>
+                </thead>
+                <!--Table head-->
+
+                <!--Table body-->
+                <tbody>
+                    <tr v-for="hitem in historiesList">
+                        <th class="d-none d-sm-block" scope="row">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                        <td>{{hitem.expect}}</td>
+                        <td>{{hitem.opentime}}</td>
+                        <td>{{hitem.opencode}}</td>
+                    </tr>
+
+                </tbody>
+                <!--Table body-->
+
+            </table>
+            <!--Table-->
+
+        </div>
+        <div class="ctrl-btns">
+             <b-button @click="getHistories" class="btn-more" size="lg" variant="dark">查看更多</b-button>
+            <!-- <b-button block variant="primary">查看更多...</b-button> -->
+        </div>
+    </section>
+
+
+</div>
+  
+</template>
+
+<script>
+// import Logo from '~/components/Logo.vue';
+// import LottoSingle  from '~/components/LottoSingle.vue';
+export default {
+  components: {
+
+  },  
+  data: function() {
+    return {
+        logo: '',
+        historyCnt: 0,
+        historiesList: [],
+        didLoad: false,
+        title: '',
+        gameId: null,
+        interval: 0,
+      test: '1',
+      maplist: [
+        {type: 'A1'}, {type: 'A2'}, {type: 'A3'},
+      ],
+      item: {},
+      catlist: [
+     
+      ]
+    }
+  },
+  methods: {
+    getHistories: function() {
+        this.historyCnt += 5;
+        this.$axios
+        .$get("/race168/vv16888/api.php?type=" + this.gameId + '&rows=' + this.historyCnt)
+        .then(res => {
+        if(res instanceof Object) {
+            let data = res['data'];
+            if(data instanceof Array) {
+                this.historiesList = data;
+            }
+        }
+        });
+    },
+    ballStartRotate: function(eid) {
+
+      eid = '#' + eid;
+      // console.log(eid);
+
+      let $ball = $( eid +' > div');
+      // console.log($ball)
+      let gutter= 0;
+      let opt = {
+        // standard foundation guttering
+        ballHold: $(eid).width() + (gutter * 1.5), // width of the column they're sat in
+        diameter: ($ball.height() + 10), // width/height of ball + 10px for spacin
+        perimeter: Math.PI, //  ratio of the circumference of a circle to its diameter
+        // how many balls
+        n: $ball.length,
+        // max amount of balls per line, 11 is a nice fit
+        total: 15,
+        // base
+        i: 0,
+      };
+      opt.perimeter = opt.perimeter * opt.diameter;
+
+      // the time between balls rolling 
+      let interval = setInterval(() => {
+        // if we have number balls
+        if (opt.i > opt.n) clearInterval(interval);
+        // use the column var to gauage rolling width
+        this.ballRotaing(opt, $ball);
+        // up dee count 
+        opt.i++;
+      }, 200);
+    },
+    // get the balls rolling
+    ballRotaing: function (opt, $ball) {
+      let distance = opt.ballHold - (opt.diameter * (opt.i % opt.total));
+      let depth = Math.floor(opt.i / opt.total)
+      var degree = distance * 360 / opt.perimeter,
+      // reusuable transition
+      transition = "2s cubic-bezier(1.000, 1.450, 0.185, 0.850)",
+      opacity = '1';
+
+      // rotate the balls
+      $ball.eq(opt.i).css({
+          transition: transition,
+          transform: 'translateX(' + distance + 'px)',
+          top: depth * opt.diameter,
+          opacity: opacity
+
+          // rotate the inner text
+      }).find('div').css({
+          transition: transition,
+          transform: 'rotate(' + degree + 'deg)'
+
+          // on animation end, rotate all the balls back to their starting position
+      }).one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend',
+          function () {
+              $(this).css('transform', 'rotate(0)');
+          }
+      );
+    }
+  },
+  asyncData({ params }) { 
+      console.log('===========asyncData============');
+        // const [slug, id]  = params.slugid.split("-")
+        console.log(params);
+    },
+  mounted: function() {
+    console.log('===========mounted============');
+    console.log(this.$route.params);
+    const [slug, id, interval]  = this.$route.params['id'].split("-")
+    this.gameId = id;
+    this.title = slug;
+    this.interval = interval;
+    this.logo = require('../../assets/images/'+ this.$route.params['id'] +'.png')
+    /** */
+    this.$axios
+    .$get("/race168/vv16888/api.php?type=" + this.gameId)
+    .then(res => {
+      if(res instanceof Object) {
+        let data = res['data'];
+        if(data instanceof Array) {
+          Object.assign(this.item, data[0]);
+          this.item['codes'] = this.item['opencode'].split(',');
+          this.item['currentSeries'] = this.item['expect'].slice(-3);
+          this.didLoad = true;
+          console.log(this.item);
+        //   setTimeout(() => {
+        //     this.ballStartRotate('balls-'+this.gameId);
+        //   }, 700);
+          
+        }
+      }
+    });
+    this.getHistories();
+  },
+  created: function () {
+    this.catlist = [
+      { "title": "极速赛车", "gameId":"A1", "interval":"75",
+        "cimg": require("~/assets/images/c75.png"),
+      },
+      { "title": "极速赛车", "gameId":"A2", "interval":"120",
+        "cimg": require("~/assets/images/c120.png"),
+        },
+      { "title": "极速赛车", "gameId":"A3", "interval":"300",
+        "cimg": require("~/assets/images/c300.png"),
+        },
+      
+    ];
+    // console.log(this.$axios);
+
+  }
+}
+</script>
+
+<style lang="scss">
+#page-lotto {.resultheader {
+    text-align: center;
+    h4 {
+           display: block;
+    width: 100%;
+    }
+    .balls {
+       margin: .5rem 0 .3rem 0;
+           display: block;
+    width: 100%;
+    }
+    padding: 1rem;
+    .countdown {
+        border: 3px solid #939393;
+        padding: .2rem .4rem;
+        border-radius: 5px;
+        font-size: 2.3rem;
+        margin: .3rem 0;
+        color: #dc3737;
+        width: 100%;
+        display: block;
+    }
+}
+
+.banner-cont {
+    // min-height: 330px;
+    text-align: center;
+}
+.banner-sub-img {
+    height: 330px;
+    width: auto;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+}
+.banner-cont.container-fluid {
+    background-color: #2a2b2b;
+
+}
+.lotto-history {
+    h3 {
+        font-size: 2.5rem;
+        margin: 1.6rem 0;
+    }
+    background-color: white;
+    .ctrl-btns {
+        text-align: center;
+    }
+}
+#lotto.container-fluid {
+    background-color: #f4f4f4;
+}
+
+
+.banner-img {
+  width: 100%;
+}
+.content {
+  /* background-color:  #0f1314; */
+  background-color:  #1a120f;
+  
+}
+/**/
+
+$small-space: 5px;
+$medium-space: 20px;
+$large-space: 40px;
+$xlarge-space: 60px;
+$lottoball: 45px;
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {  $lottoball: 60px }
+// [id^=balls-] {
+//   min-height: 110px;
+//   width: 100%;
+//   position: relative;
+// }
+.ball {
+    position: relative;
+    display: inline-block;
+    margin: 5px;
+//   opacity: 0;
+//   left: -($lottoball * 1.5);
+//   position: absolute;
+//   bottom: 55px;
+	
+	width: $lottoball;
+	height: $lottoball;
+	background: #004E99;
+	border-radius: 50%;
+	transition: all 0.7s ease-out;
+	
+	
+	&.drop {
+		bottom: 10px;
+		//transition: 2s cubic-bezier(1.000, 1.450, 0.185, 0.850);
+	}
+	> div {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		border-radius: 50%;
+		// the white number holder
+		> span {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			width: ($lottoball / 1.75);
+			height: ($lottoball / 1.75);
+			border-radius: 50%;
+			text-align: center;
+			line-height: ($lottoball / 2);
+			font-size: 14px;
+			font-weight: bold;
+			background: #ffffff;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+	}
+	&.blue {
+		background: linear-gradient(to right, #536976, #292e49); 
+	}
+	&.red {
+		background: linear-gradient(to right, #da4453, #89216b); 
+	}
+	&.green {
+		background: linear-gradient(to right, #00b09b, #96c93d); 
+	}
+	&.yellow {
+		background: linear-gradient(to right, #ffe259, #ffa751);
+	}
+}}
+</style>

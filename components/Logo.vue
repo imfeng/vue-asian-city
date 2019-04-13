@@ -1,13 +1,19 @@
 <template>
-  <div class="VueToNuxtLogo">
+  <!-- <div class="VueToNuxtLogo">
     <div class="Triangle Triangle--two" />
     <div class="Triangle Triangle--one" />
     <div class="Triangle Triangle--three" />
     <div class="Triangle Triangle--four" />
-  </div>
+  </div> -->
+  <section class="banner-cont container-fluid">
+    <img class="banner-img" src="../assets/images/banner-2.jpg" />
+  </section>
 </template>
 
 <style>
+.banner-img {
+  width: 100%;
+}
 .VueToNuxtLogo {
   display: inline-block;
   animation: turn 2s linear forwards 1s;

@@ -1,18 +1,23 @@
 <template>
-  <section class="container">
-    <div>
+    <div id="page-about">
       <logo />
-      <h1 class="title">
-        關於我們 </h1>
-      <h2 class="subtitle">
-        20190408
-      </h2>
-      <div class="links">
-        <a href="https://nuxtjs.org/" target="_blank" class="button--green">Documentation</a>
-        <a href="https://github.com/nuxt/nuxt.js" target="_blank" class="button--grey">GitHub</a>
-      </div>
+      <section class="container-fluid">
+        <div class="agileits-services" id="services">
+		      <h2 class="heading text-capitalize"> 关于我们 </h2>
+          <div class="content">
+            <ol class="tt">
+            <li>本公司在英属维京群岛 British Virgin Islands注册为合法开彩公司</li>
+            <li>本公司秉持公平公正公开的信念，全彩种采用合法的Smartplay Inc摇奖机开彩</li>
+            <li>本公司拥有强大的工程团队，可以提供稳定的API和客制化系统制作</li>
+            <li>目前与本公司合作的平台已达上百家，诚信开奖是本公司的最大核心理念</li>
+            <li>连络我们 微信 </li>
+            <li>欢迎加入我们的团队，共同创造无限未来</li>
+            </ol>
+          </div>
+        </div>
+        
+      </section>
     </div>
-  </section>
 </template>
 
 <script>
@@ -25,8 +30,22 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss">
+#page-about {
+.content {
+  .tt {
+    margin: 1rem auto;
+    max-width: 600px;
+    li {
+      text-align: left;
+      color: #e2e2e2;
+      font-size: 1.2rem;
+    }
+  }
+}
+.container-fluid {
+  background-color: #1a120f;
+}
 
 .title {
   font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
@@ -48,5 +67,5 @@ export default {
 
 .links {
   padding-top: 15px;
-}
+}}
 </style>

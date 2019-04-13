@@ -1,15 +1,45 @@
 <template>
-  <section class="container">
-    <div>
+    <div id="page-news">
       <logo />
-      <h1 class="title">
-        最新消息 </h1>
-      <h2 class="subtitle">
-        20190408
-      </h2>
+      <section class="container-fluid">
+        <div class="agileits-services" id="services">
+		      <h2 class="heading text-capitalize"> 最新消息 </h2>
+          <div class="content">
+            <div class="table-responsive">
 
+            <!--Table-->
+            <table class="table">
+
+                <!--Table head-->
+                <thead>
+                <tr>
+                    <!-- <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th> -->
+                    <th class="th-sm">日期</th>
+                    <th class="th-sm">公告</th>
+                </tr>
+                </thead>
+                <!--Table head-->
+
+                <!--Table body-->
+                <tbody>
+                    
+
+                </tbody>
+                <!--Table body-->
+
+            </table>
+            <!--Table-->
+
+        </div>
+        <div class="ctrl-btns">
+             <b-button @click="getHistories" class="btn-more" size="lg" variant="dark">查看更多</b-button>
+            <!-- <b-button block variant="primary">查看更多...</b-button> -->
+        </div>
+          </div>
+        </div>
+        
+      </section>
     </div>
-  </section>
 </template>
 
 <script>
@@ -22,14 +52,26 @@ export default {
 }
 </script>
 
-<style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+<style lang="scss">
+#page-news {
+  .table {
+    th {
+      color: white;
+    }
+  }
+.content {
+  .tt {
+    margin: 1rem auto;
+    max-width: 600px;
+    li {
+      text-align: left;
+      color: #e2e2e2;
+      font-size: 1.2rem;
+    }
+  }
+}
+.container-fluid {
+  background-color: #1a120f;
 }
 
 .title {
@@ -52,5 +94,5 @@ export default {
 
 .links {
   padding-top: 15px;
-}
+}}
 </style>
