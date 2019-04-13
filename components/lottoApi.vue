@@ -4,18 +4,19 @@
     <h1>no-use</h1>
     <h1>{{apiServer}}</h1>
     <pre>here u r RAW</pre>
-    <pre>
+    <pre> 
       {{lottos.opencode}}
       <!-- 期號 -->
       {{ lottos.expect }} 
       {{lottos.opentime}}
       {{lottos.interval}}
     </pre>
+    <h1 class="timer">倒數：{{countdownTimeRemain}}</h1>
     <!-- TODO: 歷史資料呈現  (pre tag 直接json噴出來，table (tr/td)顯示)  -->
     <!-- TODO: 聲音開關? vuex? -->
     <section>
       <!-- lotto num balls -->
-      <div class="lotto-num" v-for="e in lottoNum" :key>{{ e }}</div>
+      <div class="lotto-num" :v-for="e in lottoNum">{{ e }}</div>
     </section>
     <!-- countdown -->
     <!-- TODO timer count distance till interval end -->
@@ -28,9 +29,9 @@ export default {
   props: ["apiServer", "lottoType", "rows"],
   data() {
     return {
-      countdownTimeRemain: 75,
-      countdownMin: 1,
-      countdownSec: 15,
+      countdownTimeRemain: 75, // lol
+      // countdownMin: 1,
+      // countdownSec: 15,
       lottos: {
         //! fake data
         // endTime: "14400",
@@ -55,65 +56,48 @@ export default {
         opentimestamp: 1555059901,
         startTime: "0",
         type: "A"
-        //   @lottos {"data":[{"no":1,
-        // "expect":"2019041200391",
-        //* "opencode":"8,6,1,7,10,5,2,4,9,3",
-        //* "opentime":"2019-04-12 16:07:30",
-        // "opentimestamp":1555056450,
-        // "opendate":"20190412",
-        // "type":"A"
-        // ,"gameId":"A1",
-        // "startTime":"28800",
-        // "endTime":"14400",
-        //* "interval":"75"
-        // }],"rows":1}
       }
     };
   },
+  beforeMount() {
+    this.updateApi();
+  },
   mounted() {
-    // ! meth1    application/json
-    // this.$axios.get("/api/race168/vv16888/api.php?type=A1").then(res => {
-    //   console.log(res);
-    // });
-    // ! meth2
-    
-    // fetch(this.apiServer + "/race168/vv16888/api.php?type=A1", {
-    //   method: "GET",
-    //   mode: "no-cors",
-    // //   body: JSON.stringify()//data
-    // })
-    //   .then(res => console.log(res))
-    //   .then(data => {
-    //     // console.log(data);
-    //   });
-    this.$axios.$get(this.apiServer + "/race168/vv16888/api.php?type=A1")
-    .then(res => {
-      console.log(res);
-      if(res instanceof Object) {
-        let data = res['data'];
-        if(data instanceof Array) {
-          this.lottos = data[0];
-          console.log(this.lottos);
-        }
-      }
-    });
-    // ! meth 3
-    // const url = this.apiServer + '?type=A1';
-    // fetch(url, {mode: 'no-cors'}) // for local test use-only
-    // // .then(response => response.json())
-    // .then(data=> {
-    //   //this.lottos = data
-    //   console.log(data)
-    //   //   this.lottos = ['asd','asd','asd']
-    // })
-
     // TODO : setInterval 1000ms update time
+    setInterval(() => {
+      let expireTime =
+        new Date(this.lottos.opentime).getTime() + this.lottos.interval * 1000;
+      let now = new Date().getTime();
+
+      this.countdownTimeRemain = expireTime - now;
+      //? seems no need excepttion handle, itll back to here  :bind=opentime
+      if (this.countdownTimeRemain < 0) { //? <999
+        // this.countdownTimeRemain = 0;
+        this.updateApi();
+      }
+    }, 1000);
   },
   methods: {
     // todo: time's up call update() => lottos. $data
     // todo: if update() => data same reupdate in 100ms?
     // todo: count down beep-sound
-    // todo: VUEX may solve too many update at same time (exactly only 5, async can handle it?)
+    //    // todo: VUEX may solve too many update at same time (exactly only 5, async can handle it?)
+
+    // call api update latest lotto data
+    updateApi: function() {
+      this.$axios
+        .$get(this.apiServer + "/race168/vv16888/api.php?type=A1")
+        .then(res => {
+          console.log(res);
+          if (res instanceof Object) {
+            let data = res["data"];
+            if (data instanceof Array) {
+              this.lottos = data[0];
+              console.log(this.lottos);
+            }
+          }
+        });
+    }
   },
   computed: {
     lottoNum: function() {
@@ -121,8 +105,8 @@ export default {
       //   .sort((a, b)=>  a - b)
       //? may must not sort
     },
-    expireTime: function() {
-      return new Date(lottos.opentime).getTime()
+    countdownTimeRemain: function() {
+      // return new Date(this.lottos.opentime).getTime() + this.lottos.interval * 1000
     }
   }
 };
