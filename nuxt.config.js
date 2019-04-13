@@ -35,7 +35,7 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-
+    { src: '~/plugins/font-awesome' },
   ],
 
   /*
@@ -45,6 +45,16 @@ module.exports = {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/proxy',
+    ['nuxt-fontawesome', {
+      component: 'fa',
+      // imports: [
+      //   {
+      //     set: '@fortawesome/free-solid-svg-icons',
+      //     icons: ['fa-info-circle', 'bell-slash', 'bells']
+      //   }
+      // ]
+    }],
+    // '@nuxtjs/font-awesome',
     // Doc: https://bootstrap-vue.js.org/docs/
     'bootstrap-vue/nuxt',
   ],
@@ -54,13 +64,23 @@ module.exports = {
   axios: {
     // baseURL: 'http://knem.chickenkiller.com/race168/vv16888',
     proxyHeaders: false,
-    credentials: false
+    credentials: false,
     // See https://github.com/nuxt-community/axios-module#options
-    // baseURL: 'http://knem.chickenkiller.com/race168/vv16888/api.php',
+    baseURL: '/api-service',
     // proxyHeaders: false,
     // credentials: false
   },
-
+  fontawesome: {
+    // icon 的標籤使用 <fa>，這邊不設定就會依照 plugin 裡的設定<font-awesome-icon>
+    component: 'fa', 
+    imports: [
+      // 引入 fas 所有的icon
+      {
+        set: '@fortawesome/free-solid-svg-icons',
+        icons: ['fas']
+      },
+    ]
+  },
   proxy: [
     ['/api',
       { target: 'http://knem.chickenkiller.com', pathRewrite: { '^/api-service': '' } }]
