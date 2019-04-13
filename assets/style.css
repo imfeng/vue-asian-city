@@ -1,6 +1,7 @@
 /* Reset Code */
 /* #e9e06d 
 #282828*/
+@import url(//fonts.googleapis.com/earlyaccess/notosansscsliced.css);
 
 .container-fluid {
     padding: 0;
@@ -64,7 +65,8 @@ h5,
 h6 {
     margin: 0;
     padding: 0;
-   font-family: 'Open Sans', sans-serif;
+   /* font-family: 'Open Sans', sans-serif; */
+   font-family: 'Noto Sans SC Sliced', sans-serif;
 }
 
 p {
@@ -471,17 +473,10 @@ a.banner-button2:hover {
     color: #b84373;
     text-align: center;
 }
-.agileits-services-grids h4 {
-    font-size: 1.5em;
-    color: #3e3e3e;
-    text-transform: CAPITALIZE;
-    line-height: 1.5em;
-    letter-spacing: -0.015em;
-    font-weight: 700;
-}
+
 .agileits-services-grids span {
     font-size: 4.5em;
-    color:#8abdea;
+    /* color:#8abdea; */
 }
 p.subs {
     font-size: 1.25em;
@@ -489,7 +484,7 @@ p.subs {
 /* services */
 h3.heading,h2.heading {
     font-size: 2em;
-    font-weight: 700;
+    font-weight: 500;
     /* color: #3e3e3e; */
     color: #ffd708;
 }
