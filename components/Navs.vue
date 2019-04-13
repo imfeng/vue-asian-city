@@ -28,123 +28,108 @@
                   <b-form-input size="sm" class="mr-sm-2" placeholder="Search"></b-form-input>
                   <b-button size="sm" class="my-2 my-sm-0" type="submit">Search</b-button>
                 </b-nav-form> -->
-                <b-nav-item to="/">首頁</b-nav-item>
-                <b-nav-item to="/news">最新消息</b-nav-item>
-                <b-nav-item to="/about">關於我們</b-nav-item>
-                <b-nav-item-dropdown text="彩種" right>
-                    <b-dropdown-item to="/lotto/亚洲赛车-A1-75">亚洲赛车 - 75s</b-dropdown-item>
-                    <b-dropdown-item to="/lotto/亚洲赛车-A2-120">亚洲赛车 - 120s</b-dropdown-item>
-                    <b-dropdown-item to="/lotto/亚洲赛车-A3-300">亚洲赛车 - 300s</b-dropdown-item>
-                    <b-dropdown-item to="/lotto/亚洲飞艇-B1-75">亚洲飞艇 - 75s</b-dropdown-item>
-                    <b-dropdown-item to="/lotto/亚洲飞艇-B2-120">亚洲飞艇 - 120s</b-dropdown-item>
-                    <b-dropdown-item to="/lotto/亚洲飞艇-B3-300">亚洲飞艇 - 300s</b-dropdown-item>
-                    <b-dropdown-item to="/lotto/亚洲快3-C1-75">亚洲快3 - 75s</b-dropdown-item>
-                    <b-dropdown-item to="/lotto/亚洲快3-C2-120">亚洲快3 - 120s</b-dropdown-item>
-                    <b-dropdown-item to="/lotto/亚洲快3-C3-300">亚洲快3 - 300s</b-dropdown-item>
-                    <b-dropdown-item to="/lotto/亚洲快3-C1-75">亚洲快3 - 75s</b-dropdown-item>
-                    <b-dropdown-item to="/lotto/亚洲快3-C2-120">亚洲快3 - 120s</b-dropdown-item>
-                    <b-dropdown-item to="/lotto/亚洲快3-C3-300">亚洲快3 - 300s</b-dropdown-item>
-                    <b-dropdown-item to="/lotto/亚洲时时彩-D1-75">亚洲时时彩 - 75s</b-dropdown-item>
-                    <b-dropdown-item to="/lotto/亚洲时时彩-D2-120">亚洲时时彩 - 120s</b-dropdown-item>
-                    <b-dropdown-item to="/lotto/亚洲时时彩-D3-300">亚洲时时彩 - 300s</b-dropdown-item>
-                    <!-- <li class="dropdown-submenu">
-                        <a tabindex="-1" href="#" @click="tt">More options</a>
-<b-dropdown id="111" dropright text="Dropdown Button" class=" m-md-2">
-                        <b-dropdown-item>First Action</b-dropdown-item>
-                        <b-dropdown-item>Second Action</b-dropdown-item>
-                        <b-dropdown-item>Third Action</b-dropdown-item>
-                        <b-dropdown-divider></b-dropdown-divider>
-                        <b-dropdown-item active>Active action</b-dropdown-item>
-                        <b-dropdown-item disabled>Disabled action</b-dropdown-item>
-                    </b-dropdown>
-                    </li>
+                <b-nav-item to="/">{{$t('首页')}}</b-nav-item>
+                <b-nav-item to="/news">{{$t('最新消息')}}</b-nav-item>
+                <b-nav-item to="/about">{{$t('关于我们')}}</b-nav-item>
+                <b-nav-item-dropdown :text="$t('彩种')" right>
                     
-
                     <li class="dropdown-submenu">
-                        <a tabindex="-1" href="#">More options</a>
-                        <ul class="dropdown-menu">
-                            <li><a tabindex="-1" href="#">Second level</a></li>
-                            <li><a href="#">Second level</a></li>
-                            <li><a href="#">Second level</a></li>
-                        </ul>
+                      <a class="dropdown-item dropdown-toggle">{{$t('亚洲赛车')}}</a>
+                      <ul class="dropdown-menu submenu">
+                        <b-dropdown-item to="/lotto/亚洲赛车-A1-75">{{$t('亚洲赛车')}} - 75s</b-dropdown-item>
+                        <b-dropdown-item to="/lotto/亚洲赛车-A2-120">{{$t('亚洲赛车')}} - 120s</b-dropdown-item>
+                        <b-dropdown-item to="/lotto/亚洲赛车-A3-300">{{$t('亚洲赛车')}} - 300s</b-dropdown-item>
+                      </ul>
                     </li>
-                    <b-dropdown-item class="dropdown-submenu">
-                        <b-nav-item-dropdown to="#" text="1111" right>
-                            <b-dropdown-item href="#">2222</b-dropdown-item>
-                            <b-dropdown-item href="#">2222</b-dropdown-item>
-                        </b-nav-item-dropdown>
-                    </b-dropdown-item>
-                    <b-dropdown-item href="#">ES</b-dropdown-item>
-                    <b-dropdown-item href="#">RU</b-dropdown-item>
-                    <b-nav-item class="dropdown-submenu">
-                        <b-nav-item-dropdown text="賽車" right>
-                            <b-dropdown-item href="#">EN</b-dropdown-item>
-                            <b-dropdown-item href="#">ES</b-dropdown-item>
-                            <b-dropdown-item href="#">RU</b-dropdown-item>
-                        </b-nav-item-dropdown>
-                    </b-nav-item> -->
+                    </li>
+                    
+                    <li class="dropdown-submenu">
+                      <a class="dropdown-item dropdown-toggle">{{$t('亚洲飞艇')}}</a>
+                      <ul class="dropdown-menu submenu">
+                        <b-dropdown-item to="/lotto/亚洲飞艇-B1-75">{{$t('亚洲飞艇')}} - 75s</b-dropdown-item>
+                        <b-dropdown-item to="/lotto/亚洲飞艇-B2-120">{{$t('亚洲飞艇')}} - 120s</b-dropdown-item>
+                        <b-dropdown-item to="/lotto/亚洲飞艇-B3-300">{{$t('亚洲飞艇')}} - 300s</b-dropdown-item>
+                      </ul>
+                    </li>
+                    </li>
+                    
+                    <li class="dropdown-submenu">
+                      <a class="dropdown-item dropdown-toggle">{{$t('亚洲快3')}}</a>
+                      <ul class="dropdown-menu submenu">
+                        <b-dropdown-item to="/lotto/亚洲快3-C1-75">{{$t('亚洲快3')}} - 75s</b-dropdown-item>
+                    <b-dropdown-item to="/lotto/亚洲快3-C2-120">{{$t('亚洲快3')}} - 120s</b-dropdown-item>
+                    <b-dropdown-item to="/lotto/亚洲快3-C3-300">{{$t('亚洲快3')}} - 300s</b-dropdown-item>
+                      </ul>
+                    </li>
+                    </li>
+                    
+                    <li class="dropdown-submenu">
+                      <a class="dropdown-item dropdown-toggle">{{$t('亚洲时时彩')}}</a>
+                      <ul class="dropdown-menu submenu">
+                        <b-dropdown-item to="/lotto/亚洲时时彩-D1-75">{{$t('亚洲时时彩')}} - 75s</b-dropdown-item>
+                    <b-dropdown-item to="/lotto/亚洲时时彩-D2-120">{{$t('亚洲时时彩')}} - 120s</b-dropdown-item>
+                    <b-dropdown-item to="/lotto/亚洲时时彩-D3-300">{{$t('亚洲时时彩')}} - 300s</b-dropdown-item>
+                      </ul>
+                    </li>
+                    </li>
+                    
+                    <li class="dropdown-submenu">
+                      <a class="dropdown-item dropdown-toggle">{{$t('亚洲11选5')}}</a>
+                      <ul class="dropdown-menu submenu">
+                        <b-dropdown-item to="/lotto/亚洲11选5-E1-75">{{$t('亚洲11选5')}} - 75s</b-dropdown-item>
+                    <b-dropdown-item to="/lotto/亚洲11选5-E2-120">{{$t('亚洲11选5')}} - 120s</b-dropdown-item>
+                    <b-dropdown-item to="/lotto/亚洲11选5-E3-300">{{$t('亚洲11选5')}} - 300s</b-dropdown-item>
+                      </ul>
+                    </li>
+                    </li>
                     
 
-                    <!-- <b-nav-item-dropdown text="賽車" right>
-                        <b-dropdown-item href="#">EN</b-dropdown-item>
-                        <b-dropdown-item href="#">ES</b-dropdown-item>
-                        <b-dropdown-item href="#">RU</b-dropdown-item>
-                    </b-nav-item-dropdown>
-                    <b-nav-item-dropdown text="賽車" right>
-                        <b-dropdown-item href="#">EN</b-dropdown-item>
-                        <b-dropdown-item href="#">ES</b-dropdown-item>
-                        <b-dropdown-item href="#">RU</b-dropdown-item>
-                    </b-nav-item-dropdown> -->
+
+
+            </ul>
+          </li>
+        </ul>
+      </li>
                 </b-nav-item-dropdown>
-                <b-nav-item-dropdown text="語言" right>
-                  <b-dropdown-item href="#">CN</b-dropdown-item>
-                  <b-dropdown-item href="#">EN</b-dropdown-item>
-                  <b-dropdown-item href="#">JP</b-dropdown-item>
+                <b-nav-item-dropdown :text="$t('語言')" right>
+                  <b-dropdown-item :to="localePath('index', 'cn')">CN</b-dropdown-item>
+                  <b-dropdown-item :to="localePath('index', 'en')">EN</b-dropdown-item>
+                  <b-dropdown-item :to="localePath('index', 'jp')">JP</b-dropdown-item>
                 </b-nav-item-dropdown>
 
               </b-navbar-nav>
             </b-collapse>
           </b-navbar>
 
-        <!-- <nav class="mnu mx-auto">
-            <label for="drop" class="toggle">Menu</label>
-            <input type="checkbox" id="drop">
-            <ul class="menu">
-                <li class="mr-lg-4 mr-3 active"><a href="/">首頁</a></li>
-                <li class="mr-lg-4 mr-3"><a href="/about" class="scroll">關於我們</a></li>
-                <li class="mr-lg-4 mr-3"><a href="/news" class="scroll">最新消息</a></li>
-                <li class="mr-lg-4 mr-3"><a href="/lotto-single" class="scroll">彩種</a></li>
-                <li class="mr-lg-4 mr-3 nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    彩種
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                </li>
-                <li><a href="#contact" class="scroll">語言</a></li>
-            </ul>
-        </nav> -->
+
       </div>
     </header>
   </div>
   <!-- //navigation-->
 </template>
 <script>
+import Vue from 'vue';
 export default {
     mounted() {
-        $('ul.navbar-nav .b-nav-dropdown .dropdown-submenu #111__BV_toggle_').on('click', function(event) {
-            console.log(event)
-            // Avoid following the href location when clicking
-            event.preventDefault(); 
-            // Avoid having the menu to close when clicking
-            event.stopPropagation(); 
-            // Re-add .open to parent sub-menu item
-            $(this).parent().addClass('show');
-            $(this).parent().find("ul").parent().find("li.dropdown").addClass('open');
-        });
+        $('.dropdown-submenu').each(function(event) {
+            let that = $(this);
+            that.on('click', function(event) {
+                // console.log(that)
+                
+                let menu = that.children('.dropdown-menu.submenu');
+                menu.toggle();
+                event.preventDefault(); 
+                event.stopPropagation();
+            });
+        })
+        // $('.dropdown-submenu').on('click', function(event) {
+        //     event.preventDefault(); 
+        //     event.stopPropagation();
+        //     let menu = $(this).children('.dropdown-menu.submenu');
+        //     menu.toggle();
+        // });
+        
+        
     },
     methods: {
         tt: function ($e) {
@@ -155,6 +140,48 @@ export default {
 </script>
 <style lang="scss"> 
 #main-nav {
+    @media (max-width: 768px) {
+        .dropdown-submenu {
+            .dropdown-menu.submenu {
+                padding: 0.8rem 0rem;
+                
+                .dropdown-item {
+                    display: list-item;
+                    list-style-type: disc;
+                    margin-left: 1rem;
+                    list-style-position: inside;
+
+                }
+            }
+            
+        }
+    }
+    .dropdown-submenu {
+        width: 100%;
+        position: relative;
+        .dropdown-item {
+            padding: 0.55rem 1.5rem;
+        }
+    }
+    .dropdown-item.dropdown-toggle {
+        cursor: pointer;
+
+    }
+
+    .dropdown-submenu a::after {
+        transform: rotate(-90deg);
+        position: absolute;
+        top: .8em;
+        transform: rotate(-90deg);
+        right: .7rem;
+    }
+
+    .dropdown-submenu .dropdown-menu {
+        top: 0;
+        left: 99%;
+        margin-left: 0;
+        margin-right: .1rem;
+    }
     .dropdown-item {
         text-align: left;
         font-size: 1.2rem;

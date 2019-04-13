@@ -9,15 +9,16 @@
       <template v-else>
         <p class="ltt-seris">{{item.expect}}</p>
         <p class="ltt-seris-desc">
-          全天{{item.maxSeries}}期 当前{{item.currentSeries}}期 剩余{{item.maxSeries-item.currentSeries}}期</p>
+          {{$t('全天')}}{{item.maxSeries}}{{$t('期')}} {{$t('当前')}}{{item.currentSeries}}{{$t('期')}} {{$t('剩余')}}{{item.maxSeries-item.currentSeries}}{{$t('期')}}</p>
         <div class="ltt-icons">
-            <b-button variant="link" size="sm"><fa :icon="['fas', 'info']" /></b-button>
+            <!-- <b-button variant="link" size="sm"><fa :icon="['fas', 'info']" /></b-button> -->
             <b-button variant="link" size="sm"><fa :icon="['fas', 'bell']" /></b-button>
+            <!-- <b-button variant="link" size="sm"><fa :icon="['fas', 'bell-slash']" /></b-button> -->
 
         </div>
         <h4 class="ltt-title mt-4 mb-1">
 
-          {{item.title}}<img class="countdown-img" :src="item.cimg" />
+          {{$t(item.title)}}<img class="countdown-img" :src="item.cimg" />
 
         </h4>
 
@@ -31,7 +32,7 @@
           </div>
         </div>
         <p class="ltt-time">{{item.opentime}}</p>
-        <p class="ltt-countdown">下期倒数：00:00:22 </p>
+        <p class="ltt-countdown">{{$t('下期倒数')}}：00:00:22 </p>
         <!-- <button @click="ballStartRotate('balls-'+item.gameId)">click</button> -->
       </template>
 
@@ -95,6 +96,7 @@ export default {
           this.item['codes'] = this.item['opencode'].split(',');
           this.item['currentSeries'] = this.item['expect'].slice(-3);
           this.didLoadData = true;
+          /** count down */
           setTimeout(() => {
             this.ballStartRotate('balls-'+this.gameId);
           }, 700);

@@ -25,8 +25,12 @@
           </div>
         </div>
         <div class="col-md-3 resultheader">
-          <h4 class="resulttxt2">距离下次开彩</h4>
-          <div class="countdown">00:00:06</div>
+          <h4 class="resulttxt2">距离下次开彩
+<b-button variant="link" size="sm"><fa :icon="['fas', 'bell']" /></b-button>
+            <!-- <b-button variant="link" size="sm"><fa :icon="['fas', 'bell-slash']" /></b-button> -->
+
+          </h4>
+          <div v-if="didLoad" class="countdown">00:00:06</div>
         </div>
       </div>
     </div>

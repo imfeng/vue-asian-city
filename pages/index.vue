@@ -5,13 +5,13 @@
   </section>
   	<div class="agileits-services" id="services">
 		  <div class="container">
-		   <h2 class="heading text-capitalize"> 热门彩种 </h2>
+		   <h2 class="heading text-capitalize">{{$t('热门彩种')}}  </h2>
 		   <!-- <p class="subs mt-4">Proin ac fermentum est. Cras mi ipsum, consectetur.</p> -->
        <!-- <p class="centerd cat-logo"><img src="../assets/images/airship.png" alt=""></p> -->
           <div class="agileits-services-row row pt-md-5 pb-5  text-center">
-            <LottoOne gameId="A1" title="极速赛车" interval="75"/>
-            <LottoOne gameId="A2" title="极速赛车" interval="120"/>
-            <LottoOne gameId="A3" title="极速赛车" interval="300"/>
+            <LottoOne gameId="A1" title="亚洲赛车" interval="75"/>
+            <LottoOne gameId="A2" title="亚洲赛车" interval="120"/>
+            <LottoOne gameId="A3" title="亚洲赛车" interval="300"/>
             <LottoOne gameId="B1" title="亚洲飞艇" interval="75"/>
             <LottoOne gameId="B2" title="亚洲飞艇" interval="120"/>
             <LottoOne gameId="B3" title="亚洲飞艇" interval="300"/>
@@ -79,13 +79,13 @@ export default {
   },
   created: function () {
     this.catlist = [
-      { "title": "极速赛车", "gameId":"A1", "interval":"75",
+      { "title": "亚洲赛车", "gameId":"A1", "interval":"75",
         "cimg": require("~/assets/images/c75.png"),
       },
-      { "title": "极速赛车", "gameId":"A2", "interval":"120",
+      { "title": "亚洲赛车", "gameId":"A2", "interval":"120",
         "cimg": require("~/assets/images/c120.png"),
         },
-      { "title": "极速赛车", "gameId":"A3", "interval":"300",
+      { "title": "亚洲赛车", "gameId":"A3", "interval":"300",
         "cimg": require("~/assets/images/c300.png"),
         },
       

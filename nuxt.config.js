@@ -54,6 +54,44 @@ module.exports = {
       //   }
       // ]
     }],
+    ['nuxt-i18n', {
+      locales: ['en', 'cn', 'jp'],
+      defaultLocale: 'cn',
+      detectBrowserLanguage: {
+        useCookie: true,
+        cookieKey: 'i18n_redirected'
+      },
+      locales: [
+        {
+          code: 'en',
+          file: 'en.js'
+        },
+        {
+          code: 'cn',
+          file: 'cn.js'
+        },
+        {
+          code: 'jp',
+          file: 'jp.js'
+        }
+      ],
+      lazy: true,
+      langDir: 'lang/',
+      // vueI18n: {
+      //   fallbackLocale: 'cn',
+      //   messages: {
+      //     en: {
+      //       welcome: 'Welcome'
+      //     },
+      //     fr: {
+      //       welcome: 'Bienvenue'
+      //     },
+      //     es: {
+      //       welcome: 'Bienvenido'
+      //     }
+      //   }
+      // }
+    }],
     // '@nuxtjs/font-awesome',
     // Doc: https://bootstrap-vue.js.org/docs/
     'bootstrap-vue/nuxt',
