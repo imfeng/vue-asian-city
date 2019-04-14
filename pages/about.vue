@@ -5,7 +5,7 @@
         <div class="agileits-services" id="services">
 		      <h2 class="heading text-capitalize"> 关于我们 </h2>
           <div class="video">
-            <video autoplay preload="auto" poster="../assets/images/lotto-video.jpg" loop>
+            <video autoplay preload="auto" loop>
               <source src="../assets/lotto.mp4" type="video/mp4">
               Your browser does not support HTML5 video.
             </video>

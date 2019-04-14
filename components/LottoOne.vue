@@ -24,7 +24,7 @@
 
         <div v-if="item.codes" class="row">
           <div v-bind:id="'balls-'+gameId" class="small-12 medium-3 columns">
-            <div class="ball yellow" v-for="code in item.codes">
+            <div class="ball yellow" v-for="(code, idx) in item.codes" :key="idx">
               <div>
                 <span>{{code}}</span>
               </div>
@@ -102,7 +102,6 @@ export default {
     audio.volume = 0.5;
     this.audio = audio;
     this.intervalIns = setInterval(() => {
-      
       this.counting();
     }, 1000);
   },
@@ -123,7 +122,7 @@ export default {
         this.updateApi();
         this.ballRotaing(true);
       }
-      if (this.countdownRemain < 10001) {
+      if (this.countdownRemain < 10001 && this.countdownRemain > 100) {
         if(this.alarm) {this.audio.play();};
         if(!this.isRotating) { this.ballStandbyOut()}
       }
@@ -164,7 +163,6 @@ export default {
       // }, 200);
     },
     ballStandbyOut: function() {
-      
       this.$ball.each(function(index) {
         $(this).addClass('rotating-class');
       });
@@ -181,13 +179,10 @@ export default {
       let offset = (!isOut) ? 0 : 200;
 
       // rotate the balls
-      $ball
+      this.$ball
         .each(function(index) {
           let that = $(this);
-          if(isOut) {
-            this.isRotating = false;
-            that.removeClass('rotating-class');
-          }
+          that.removeClass('rotating-class');
           setTimeout(function() {
             
             that.css({
@@ -214,6 +209,9 @@ export default {
           }, index * 200);
           
         });
+      if(isOut || this.isRotating) {
+        this.isRotating = false;
+      }
         // .eq(opt.i)
     },
     updateApi: function() {

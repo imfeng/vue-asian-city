@@ -17,7 +17,7 @@
                   </span>
                 </h4>
                 <div v-bind:id="'balls-'+gameId" class="balls small-12 medium-3 columns">
-                  <div class="ball stand yellow" v-for="code in item.codes">
+                  <div class="ball stand yellow" v-for="(code, idx) in item.codes" :key="idx">
                     <div>
                       <span>{{code}}</span>
                     </div>
@@ -68,7 +68,7 @@
               <!-- <td>{{hitem.opencode}} </td> -->
               <td>
                 <div class="balls small-12 medium-3 columns">
-                  <div class="ball grey" v-for="hcode in hitem.codes">
+                  <div class="ball grey" v-for="(hcode, hidx) in hitem.codes" :key="hidx">
                     <div>
                       <span>{{hcode}}</span>
                     </div>
@@ -134,8 +134,9 @@ export default {
   },
   methods: {
     counting: function() {
-      let expireTime =
-        new Date(this.item.opentime).getTime() + this.item.interval * 1000;
+      if(!this.item.opentime) { return; }
+      this.item.opentime = this.item.opentime.replace(/-/g,'/');
+      let expireTime = new Date(this.item.opentime).getTime() + this.item.interval * 1000;
       let now = new Date().getTime();
 
       this.countdownRemain = expireTime - now;
@@ -220,10 +221,10 @@ export default {
     },
     // get the balls rolling
     ballStandbyOut: function() {
-      this.isRotating = true;
       this.$ball.each(function(index) {
         $(this).addClass('rotating-class');
       });
+      this.isRotating = true;
     },
     ballRotaing: function(isOut = false) {
       let $ball = this.$ball, opt = this.opt;
@@ -239,10 +240,7 @@ export default {
       this.$ball
         .each(function(index) {
           let that = $(this);
-          if(isOut) {
-            this.isRotating = false;
-            that.removeClass('rotating-class');
-          }
+          that.removeClass('rotating-class');
           setTimeout(function() {
             
             that.css({
@@ -269,6 +267,9 @@ export default {
           }, index * 200);
           
         });
+      if(isOut || this.isRotating) {
+        this.isRotating = false;
+      }
         // .eq(opt.i)
     },
     toggleAlarm: function() {

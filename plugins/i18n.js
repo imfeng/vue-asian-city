@@ -9,11 +9,11 @@ export default ({ app, store }) => {
   app.i18n = new VueI18n({
     locale: store.state.locale,
     fallbackLocale: 'cn',
-    // messages: {
-    //   'cn': require('~/lang/cn.json'),
-    //   'en': require('~/lang/en.json'),
-    //   'jp': require('~/lang/jp.json')
-    // }
+    messages: {
+      'cn': require('~/lang/json/cn.json'),
+      'en': require('~/lang/json/en.json'),
+      'jp': require('~/lang/json/jp.json')
+    }
   });
 
   app.i18n.path = (link) => {

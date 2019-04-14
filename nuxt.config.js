@@ -3,7 +3,7 @@ const webpack = require('webpack')
 
 
 module.exports = {
-  mode: 'spa',
+  mode: 'universal',
   /*
   ** Headers of the page
   */
@@ -41,7 +41,7 @@ module.exports = {
   */
   plugins: [
     { src: '~/plugins/font-awesome' },
-    // { src: '~/plugins/i18n.js' },
+    { src: '~/plugins/i18n.js' },
   ],
 
   /*
@@ -59,61 +59,6 @@ module.exports = {
       //     icons: ['fa-info-circle', 'bell-slash', 'bells']
       //   }
       // ]
-    }],
-    ['nuxt-i18n', {
-      seo: false,
-      pages: {
-
-      },
-      locales: ['en', 'cn', 'jp'],
-      Strategy: 'prefix',
-      defaultLocaleRouteNameSuffix: 'default',
-      noPrefixDefaultLocale: false,
-      // defaultLocale: 'cn',
-      defaultLocale: {
-        locale: 'cn',
-        prefix: true
-      },
-      useRedirectCookie: true,
-      // redirectCookieKey: 'redirected',
-      detectBrowserLanguage: {
-        useCookie: true,
-        cookieKey: 'i18n_redirected'
-      },
-      
-      locales: [
-        {
-          code: 'en',
-          iso: 'en-US',
-          file: 'en.js'
-        },
-        {
-          code: 'cn',
-          iso: 'zn-CN',
-          file: 'cn.js'
-        },
-        {
-          code: 'jp',
-          iso: 'ja-JP',
-          file: 'jp.js'
-        }
-      ],
-      lazy: true,
-      langDir: 'lang/',
-      // vueI18n: {
-      //   fallbackLocale: 'cn',
-      //   messages: {
-      //     en: {
-      //       welcome: 'Welcome'
-      //     },
-      //     fr: {
-      //       welcome: 'Bienvenue'
-      //     },
-      //     es: {
-      //       welcome: 'Bienvenido'
-      //     }
-      //   }
-      // }
     }],
     // '@nuxtjs/font-awesome',
     // Doc: https://bootstrap-vue.js.org/docs/
@@ -173,9 +118,9 @@ module.exports = {
       })
     ]
   },
-  // router: {
-  //   middleware: 'i18n'
-  // },
+  router: {
+    middleware: 'i18n'
+  },
   generate: {
     routes: [
       '/cn/lotto/亚洲赛车-A1-75',

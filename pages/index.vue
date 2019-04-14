@@ -1,70 +1,50 @@
 <template>
-<div class="content">
-  <Banner />
-
-  	<div class="agileits-services" id="services">
-		  <div class="container">
-		   <h2 class="heading text-capitalize">{{$t('热门彩种')}}  </h2>
-		   <!-- <p class="subs mt-4">Proin ac fermentum est. Cras mi ipsum, consectetur.</p> -->
-       <!-- <p class="centerd cat-logo"><img src="../assets/images/airship.png" alt=""></p> -->
-          <div class="agileits-services-row row pt-md-5 pb-5  text-center">
-            <LottoOne gameId="A1" title="亚洲赛车" interval="75"/>
-            <LottoOne gameId="A2" title="亚洲赛车" interval="120"/>
-            <LottoOne gameId="A3" title="亚洲赛车" interval="300"/>
-            <LottoOne gameId="B1" title="亚洲飞艇" interval="75"/>
-            <LottoOne gameId="B2" title="亚洲飞艇" interval="120"/>
-            <LottoOne gameId="B3" title="亚洲飞艇" interval="300"/>
-            <LottoOne gameId="C1" title="亚洲快3" interval="75"/>
-            <LottoOne gameId="C2" title="亚洲快3" interval="120"/>
-            <LottoOne gameId="C3" title="亚洲快3" interval="300"/>
-            <LottoOne gameId="D1" title="亚洲时时彩" interval="75"/>
-            <LottoOne gameId="D2" title="亚洲时时彩" interval="120"/>
-            <LottoOne gameId="D3" title="亚洲时时彩" interval="300"/>
-            <LottoOne gameId="E1" title="亚洲11选5" interval="75"/>
-            <LottoOne gameId="E2" title="亚洲11选5" interval="120"/>
-            <LottoOne gameId="E3" title="亚洲11选5" interval="300"/>
-
-
-
-          </div>
-<!--             
-			<p class="subs mb-4">Proin ac fermentum est. Cras mi ipsum, consectetur?</p>
-			<a @click="getd" class="banner-button btn">My recent work</a> -->
+  <div class="content">
+    <Banner />
+    <div class="agileits-services" id="services">
+      <div class="container">
+        <h2 class="heading text-capitalize">{{$t('热门彩种')}} </h2>
+        <div class="agileits-services-row row pt-md-5 pb-5  text-center">
+          <no-ssr placeholder="Loading...">
+            <LottoOne gameId="A1" title="亚洲赛车" interval="75" />
+            <LottoOne gameId="A2" title="亚洲赛车" interval="120" />
+            <LottoOne gameId="A3" title="亚洲赛车" interval="300" />
+            <LottoOne gameId="B1" title="亚洲飞艇" interval="75" />
+            <LottoOne gameId="B2" title="亚洲飞艇" interval="120" />
+            <LottoOne gameId="B3" title="亚洲飞艇" interval="300" />
+            <LottoOne gameId="C1" title="亚洲快3" interval="75" />
+            <LottoOne gameId="C2" title="亚洲快3" interval="120" />
+            <LottoOne gameId="C3" title="亚洲快3" interval="300" />
+            <LottoOne gameId="D1" title="亚洲时时彩" interval="75" />
+            <LottoOne gameId="D2" title="亚洲时时彩" interval="120" />
+            <LottoOne gameId="D3" title="亚洲时时彩" interval="300" />
+            <LottoOne gameId="E1" title="亚洲11选5" interval="75" />
+            <LottoOne gameId="E2" title="亚洲11选5" interval="120" />
+            <LottoOne gameId="E3" title="亚洲11选5" interval="300" />
+          </no-ssr>
+        </div>
+      </div>
     </div>
-	</div>
-  <!-- <section class="container">
-    <div>
-      <logo />
-      <h1 class="title">
-亞洲娛樂城
-      </h1>
-      <h2 class="subtitle">
-        20190408
-      </h2>
-    </div>
-  </section> -->
-  <section class="logos">
-    <h2 class="heading text-capitalize">{{$t('合作夥伴')}}  </h2>
+    <section class="logos">
+      <h2 class="heading text-capitalize">{{$t('合作伙伴')}} </h2>
 
-    <div class="logo"><img src="../assets/images/logos/ag.png" alt="key iamge"></div>
+      <div class="logo"><img src="../assets/images/logos/ag.png" alt="key iamge"></div>
 
-    <div class="logo"><img src="../assets/images/logos/micro.png" alt="key iamge"></div>
+      <div class="logo"><img src="../assets/images/logos/micro.png" alt="key iamge"></div>
 
-    <div class="logo"><img src="../assets/images/logos/night.png" alt="key iamge"></div>
+      <div class="logo"><img src="../assets/images/logos/night.png" alt="key iamge"></div>
 
-    <div class="logo"><img src="../assets/images/logos/oriental.png" alt="key iamge"></div>
+      <div class="logo"><img src="../assets/images/logos/oriental.png" alt="key iamge"></div>
 
-    <div class="logo"><img src="../assets/images/logos/in.png" alt="key iamge"></div>
+      <div class="logo"><img src="../assets/images/logos/in.png" alt="key iamge"></div>
 
-    <div class="logo"><img src="../assets/images/logos/key2.png" alt="key iamge"></div>
-    <div class="logo"><img src="../assets/images/logos/auth.png" alt="auth iamge"></div>
-    <div class="logo"><img src="../assets/images/logos/ssl.png" alt="ssj iamge"></div>
-    <div class="logo"><img src="../assets/images/logos/kroo.png" alt="casino iamge"></div>
+      <div class="logo"><img src="../assets/images/logos/key2.png" alt="key iamge"></div>
+      <div class="logo"><img src="../assets/images/logos/auth.png" alt="auth iamge"></div>
+      <div class="logo"><img src="../assets/images/logos/ssl.png" alt="ssj iamge"></div>
+      <div class="logo"><img src="../assets/images/logos/kroo.png" alt="casino iamge"></div>
+    </section>
+  </div>
 
-    <!-- <div class="logo"><img src="../assets/images/logos/nok.png" alt=""></div> -->
-  </section>
-</div>
-  
 </template>
 
 <script>
