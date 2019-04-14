@@ -5,7 +5,6 @@
       <div class="container">
         <h2 class="heading text-capitalize">{{$t('热门彩种')}} </h2>
         <div class="agileits-services-row row pt-md-5 pb-5  text-center">
-          <no-ssr placeholder="Loading...">
             <LottoOne gameId="A1" title="亚洲赛车" interval="75" />
             <LottoOne gameId="A2" title="亚洲赛车" interval="120" />
             <LottoOne gameId="A3" title="亚洲赛车" interval="300" />
@@ -21,7 +20,6 @@
             <LottoOne gameId="E1" title="亚洲11选5" interval="75" />
             <LottoOne gameId="E2" title="亚洲11选5" interval="120" />
             <LottoOne gameId="E3" title="亚洲11选5" interval="300" />
-          </no-ssr>
         </div>
       </div>
     </div>

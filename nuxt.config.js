@@ -3,6 +3,8 @@ const webpack = require('webpack')
 
 
 module.exports = {
+  server : { host: '0.0.0.0', port: 80 },
+
   mode: 'universal',
   /*
   ** Headers of the page
@@ -121,56 +123,56 @@ module.exports = {
   router: {
     middleware: 'i18n'
   },
-  generate: {
-    routes: [
-      '/cn/lotto/亚洲赛车-A1-75',
-      '/cn/lotto/亚洲赛车-A2-120',
-      '/cn/lotto/亚洲赛车-A3-300',
-      '/cn/lotto/亚洲飞艇-B1-75',
-      '/cn/lotto/亚洲飞艇-B2-120',
-      '/cn/lotto/亚洲飞艇-B3-300',
-      '/cn/lotto/亚洲快3-C1-75',
-      '/cn/lotto/亚洲快3-C2-120',
-      '/cn/lotto/亚洲快3-C3-300',
-      '/cn/lotto/亚洲快3-C1-75',
-      '/cn/lotto/亚洲快3-C2-120',
-      '/cn/lotto/亚洲快3-C3-300',
-      '/cn/lotto/亚洲时时彩-D1-75',
-      '/cn/lotto/亚洲时时彩-D2-120',
-      '/cn/lotto/亚洲时时彩-D3-300',
-      /* */
-      '/en/lotto/亚洲赛车-A1-75',
-      '/en/lotto/亚洲赛车-A2-120',
-      '/en/lotto/亚洲赛车-A3-300',
-      '/en/lotto/亚洲飞艇-B1-75',
-      '/en/lotto/亚洲飞艇-B2-120',
-      '/en/lotto/亚洲飞艇-B3-300',
-      '/en/lotto/亚洲快3-C1-75',
-      '/en/lotto/亚洲快3-C2-120',
-      '/en/lotto/亚洲快3-C3-300',
-      '/en/lotto/亚洲快3-C1-75',
-      '/en/lotto/亚洲快3-C2-120',
-      '/en/lotto/亚洲快3-C3-300',
-      '/en/lotto/亚洲时时彩-D1-75',
-      '/en/lotto/亚洲时时彩-D2-120',
-      '/en/lotto/亚洲时时彩-D3-300',
-      /* */
+  // generate: {
+  //   routes: [
+  //     '/cn/lotto/亚洲赛车-A1-75',
+  //     '/cn/lotto/亚洲赛车-A2-120',
+  //     '/cn/lotto/亚洲赛车-A3-300',
+  //     '/cn/lotto/亚洲飞艇-B1-75',
+  //     '/cn/lotto/亚洲飞艇-B2-120',
+  //     '/cn/lotto/亚洲飞艇-B3-300',
+  //     '/cn/lotto/亚洲快3-C1-75',
+  //     '/cn/lotto/亚洲快3-C2-120',
+  //     '/cn/lotto/亚洲快3-C3-300',
+  //     '/cn/lotto/亚洲快3-C1-75',
+  //     '/cn/lotto/亚洲快3-C2-120',
+  //     '/cn/lotto/亚洲快3-C3-300',
+  //     '/cn/lotto/亚洲时时彩-D1-75',
+  //     '/cn/lotto/亚洲时时彩-D2-120',
+  //     '/cn/lotto/亚洲时时彩-D3-300',
+  //     /* */
+  //     '/en/lotto/亚洲赛车-A1-75',
+  //     '/en/lotto/亚洲赛车-A2-120',
+  //     '/en/lotto/亚洲赛车-A3-300',
+  //     '/en/lotto/亚洲飞艇-B1-75',
+  //     '/en/lotto/亚洲飞艇-B2-120',
+  //     '/en/lotto/亚洲飞艇-B3-300',
+  //     '/en/lotto/亚洲快3-C1-75',
+  //     '/en/lotto/亚洲快3-C2-120',
+  //     '/en/lotto/亚洲快3-C3-300',
+  //     '/en/lotto/亚洲快3-C1-75',
+  //     '/en/lotto/亚洲快3-C2-120',
+  //     '/en/lotto/亚洲快3-C3-300',
+  //     '/en/lotto/亚洲时时彩-D1-75',
+  //     '/en/lotto/亚洲时时彩-D2-120',
+  //     '/en/lotto/亚洲时时彩-D3-300',
+  //     /* */
 
-      '/jp/lotto/亚洲赛车-A1-75',
-      '/jp/lotto/亚洲赛车-A2-120',
-      '/jp/lotto/亚洲赛车-A3-300',
-      '/jp/lotto/亚洲飞艇-B1-75',
-      '/jp/lotto/亚洲飞艇-B2-120',
-      '/jp/lotto/亚洲飞艇-B3-300',
-      '/jp/lotto/亚洲快3-C1-75',
-      '/jp/lotto/亚洲快3-C2-120',
-      '/jp/lotto/亚洲快3-C3-300',
-      '/jp/lotto/亚洲快3-C1-75',
-      '/jp/lotto/亚洲快3-C2-120',
-      '/jp/lotto/亚洲快3-C3-300',
-      '/jp/lotto/亚洲时时彩-D1-75',
-      '/jp/lotto/亚洲时时彩-D2-120',
-      '/jp/lotto/亚洲时时彩-D3-300',
-    ]
-  }
+  //     '/jp/lotto/亚洲赛车-A1-75',
+  //     '/jp/lotto/亚洲赛车-A2-120',
+  //     '/jp/lotto/亚洲赛车-A3-300',
+  //     '/jp/lotto/亚洲飞艇-B1-75',
+  //     '/jp/lotto/亚洲飞艇-B2-120',
+  //     '/jp/lotto/亚洲飞艇-B3-300',
+  //     '/jp/lotto/亚洲快3-C1-75',
+  //     '/jp/lotto/亚洲快3-C2-120',
+  //     '/jp/lotto/亚洲快3-C3-300',
+  //     '/jp/lotto/亚洲快3-C1-75',
+  //     '/jp/lotto/亚洲快3-C2-120',
+  //     '/jp/lotto/亚洲快3-C3-300',
+  //     '/jp/lotto/亚洲时时彩-D1-75',
+  //     '/jp/lotto/亚洲时时彩-D2-120',
+  //     '/jp/lotto/亚洲时时彩-D3-300',
+  //   ]
+  // }
 }
