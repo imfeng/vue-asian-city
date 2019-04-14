@@ -3,7 +3,7 @@ const webpack = require('webpack')
 
 
 module.exports = {
-  mode: 'universe',
+  mode: 'spa',
   /*
   ** Headers of the page
   */

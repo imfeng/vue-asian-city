@@ -32,6 +32,6 @@ ABOUT_ME_1: '本公司在英属维京群岛 British Virgin Islands注册为合�
 ABOUT_ME_2: '本公司秉持公平公正公开的信念，全彩种采用合法的Smartplay Inc摇奖机开彩',
 ABOUT_ME_3: '本公司拥有强大的工程团队，可以提供稳定的API和客制化系统制作',
 ABOUT_ME_4: '目前与本公司合作的平台已达上百家，诚信开奖是本公司的最大核心理念',
-ABOUT_ME_5: '连络我们 微信 ',
+ABOUT_ME_5: '连络我们 Wechat：vv7978vv / LINE：vv7978vv / QQ：2154351051',
 ABOUT_ME_6: '欢迎加入我们的团队，共同创造无限未来',
 }

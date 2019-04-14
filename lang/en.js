@@ -33,6 +33,6 @@ ABOUT_ME_1: 'The company is registered as a legal lottery company in the British
 ABOUT_ME_2: 'The company adheres to the belief of fairness, impartiality and openness, and the full-color variety uses the legal Smartplay Inc.',
 ABOUT_ME_3: 'The company has a strong engineering team that can provide stable API and customized system production.',
 ABOUT_ME_4: 'At present, there are hundreds of platforms for cooperation with the company. The integrity of the company is the core concept of the company.',
-ABOUT_ME_5: 'Contact us Wechat',
+ABOUT_ME_5: 'Contact us Wechat：vv7978vv / LINE：vv7978vv / QQ：2154351051',
 ABOUT_ME_6: 'Welcome to join our team to create an infinite future together',
 }

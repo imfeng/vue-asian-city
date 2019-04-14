@@ -19,6 +19,17 @@
             <li>{{$t('ABOUT_ME_4')}}</li>
             <li>{{$t('ABOUT_ME_5')}}</li>
             <li>{{$t('ABOUT_ME_6')}}</li>
+<div class="qrcodes row">
+  <div class="col-md-4 col-sm-3">
+    <img src="../assets/qrcodes/line.jpg" alt="line qrcode">
+  </div>
+  <div class="col-md-4 col-sm-3">
+    <img src="../assets/qrcodes/qq.jpg" alt="qq qrcode">
+  </div>
+  <div class="col-md-4 col-sm-3">
+    <img src="../assets/qrcodes/asian.jpg" alt="asian qrcode">
+  </div>
+</div>
             </ol>
           </div>
         </div>
@@ -100,5 +111,14 @@ export default {
 
 .links {
   padding-top: 15px;
-}}
+}
+.qrcodes {
+  
+  img {
+    margin-top: 1rem; 
+    width: 100%;
+  }
+}
+
+}
 </style>

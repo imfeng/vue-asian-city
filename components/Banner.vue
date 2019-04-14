@@ -1,6 +1,7 @@
 <template>
   <section class="banner-cont container-fluid">
     <div class="banner-bg-img"></div>
+    <div class="business-bg-img"></div>
     <!-- <img class="banner-img" src="../assets/images/banner-cn2.jpg" /> -->
   </section>
 </template>
@@ -12,8 +13,15 @@
       width: 100%;
     }
     .banner-bg-img {
-      min-height: 640px;
+      min-height: 570px;
       background-image: url('../assets/images/banner-cn.jpg');
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    .business-bg-img {
+      height: 190px;
+      background-image: url('../assets/images/business-all.jpg');
       background-position: center center;
       background-repeat: no-repeat;
       background-size: cover;
@@ -25,7 +33,7 @@
             width: 100%;
             }
             .banner-bg-img {
-            min-height: 640px;
+            min-height: 530px;
             background-image: url('../assets/images/banner-cn.jpg');
             background-position: center center;
             background-repeat: no-repeat;

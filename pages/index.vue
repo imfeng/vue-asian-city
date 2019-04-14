@@ -1,14 +1,7 @@
 <template>
 <div class="content">
   <Banner />
-  <section class="logos">
-    <div class="logo"><img src="../assets/images/logos/key2.png" alt="key iamge"></div>
-        <div class="logo"><img src="../assets/images/logos/auth.png" alt="auth iamge"></div>
-    <div class="logo"><img src="../assets/images/logos/ssl.png" alt="ssj iamge"></div>
-        <div class="logo"><img src="../assets/images/logos/kroo.png" alt="casino iamge"></div>
 
-    <div class="logo"><img src="../assets/images/logos/nok.png" alt=""></div>
-  </section>
   	<div class="agileits-services" id="services">
 		  <div class="container">
 		   <h2 class="heading text-capitalize">{{$t('热门彩种')}}  </h2>
@@ -50,6 +43,26 @@
       </h2>
     </div>
   </section> -->
+  <section class="logos">
+    <h2 class="heading text-capitalize">{{$t('合作夥伴')}}  </h2>
+
+    <div class="logo"><img src="../assets/images/logos/ag.png" alt="key iamge"></div>
+
+    <div class="logo"><img src="../assets/images/logos/micro.png" alt="key iamge"></div>
+
+    <div class="logo"><img src="../assets/images/logos/night.png" alt="key iamge"></div>
+
+    <div class="logo"><img src="../assets/images/logos/oriental.png" alt="key iamge"></div>
+
+    <div class="logo"><img src="../assets/images/logos/in.png" alt="key iamge"></div>
+
+    <div class="logo"><img src="../assets/images/logos/key2.png" alt="key iamge"></div>
+    <div class="logo"><img src="../assets/images/logos/auth.png" alt="auth iamge"></div>
+    <div class="logo"><img src="../assets/images/logos/ssl.png" alt="ssj iamge"></div>
+    <div class="logo"><img src="../assets/images/logos/kroo.png" alt="casino iamge"></div>
+
+    <!-- <div class="logo"><img src="../assets/images/logos/nok.png" alt=""></div> -->
+  </section>
 </div>
   
 </template>
@@ -120,14 +133,19 @@ export default {
 <style lang="scss">
 
 section.logos {
+  .heading {
+    margin: 1rem 0;
+  }
   background: #212121;
   // overflow: hidden;
   // max-height: 170px;
   text-align: center;
   padding: 1.5rem;
   .logo {
-    display: inline;
-    margin-left: 50px;
+    display: inline-block;
+
+    overflow: hidden;
+    margin: .6rem .3rem;
     img {
       max-height: 120px;
     }
@@ -155,9 +173,7 @@ section.logos {
       .logo {
         padding: 1rem 1rem;
         margin: 1rem 0!important;
-        max-width: 33%;
         img {
-          max-width: 32%;
           max-height: 60px;
         }
       }

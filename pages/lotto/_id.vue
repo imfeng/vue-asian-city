@@ -1,6 +1,7 @@
 <template>
   <div id="page-lotto">
     <section class="banner-cont container-fluid">
+      <!-- <div class="banner-bg-img"></div> -->
       <img class="banner-sub-img" :src="logo">
     </section>
     <section id="lotto" class="container-fluid">
@@ -137,6 +138,7 @@ export default {
               this.item["codes"] = this.item["opencode"].split(",");
               this.item["currentSeries"] = this.item["expect"].slice(-3);
               this.didLoad = true;
+              this.getHistories(false);
               console.log(this.item);
               //   setTimeout(() => {
               //     this.ballStartRotate('balls-'+this.gameId);
@@ -145,8 +147,8 @@ export default {
           }
         });
     },
-    getHistories: function() {
-      this.historyCnt += 20;
+    getHistories: function(plus = true) {
+      if(plus) { this.historyCnt += 20; }
       this.$axios
         .$get(
           "/race168/vv16888/api.php?type=" +
@@ -288,6 +290,13 @@ export default {
 
 <style lang="scss">
 #page-lotto {
+  .banner-bg-img {
+    min-height: 640px;
+    background-image: url('../../assets/images/banner-bg.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
   .resultheader {
     button {
         padding: .1rem;
