@@ -1,6 +1,6 @@
 <template>
     <div id="page-news">
-      <logo />
+  <Banner />
       <section class="container-fluid">
         <div class="agileits-services" id="services">
 		      <h2 class="heading text-capitalize"> 最新消息 </h2>
@@ -43,11 +43,25 @@
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
+import Banner from '~/components/Banner.vue'
 
 export default {
+  head: {
+    title: '亚洲娱乐网 - 最新消息',
+    meta: [
+      { charset: 'utf-8' },
+      { 'http-equiv': 'X-UA-Compatible', content:'ie=edge' },
+
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { hid: 'description', name: 'description', content: '最新消息' }
+    ],
+
+    script: [
+
+    ]
+  },
   components: {
-    Logo
+    Banner
   }
 }
 </script>

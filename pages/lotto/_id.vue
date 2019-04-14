@@ -10,7 +10,7 @@
             <div class="resultheader">
               <div v-if="didLoad" class="row">
                 <h4>
-                  期号：
+                  {{$t('期号')}}：
                   <span id="Clock" class="txtbold">
                     <span class="txtbold">{{ item.expect }}, {{ item.opentime }}</span>
                   </span>
@@ -27,7 +27,7 @@
           </div>
           
         <div class="col-md-3 resultheader">
-          <h4 class="resulttxt2">距离下次开彩
+          <h4 class="resulttxt2">{{$t('距离下次开彩')}}
             <b-button v-if="alarm" @click="toggleAlarm" variant="light" size="sm"><fa :icon="['fas', 'bell']" /></b-button>
             <b-button v-if="!alarm" @click="toggleAlarm" variant="light" size="sm"><fa :icon="['fas', 'bell-slash']" /></b-button></h4>
           
@@ -38,30 +38,39 @@
     </section>
     <section class="lotto-history container-fluid">
       <div class="text-center container">
-        <h3>历史开彩清单</h3>
+        <h3>{{$t('历史开彩清单')}}</h3>
       </div>
 
-      <div class="table-responsive">
+      <div class="table-responsive container">
         <!--Table-->
         <table class="table">
           <!--Table head-->
           <thead>
             <tr>
-              <th class="d-none d-sm-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-              <th class="th-sm">编号</th>
-              <th class="th-sm">日期</th>
-              <th class="th-sm">期号</th>
+              <th class="d-none d-sm-block">#</th>
+              <th class="th-sm">{{$t('编号')}}</th>
+              <th class="th-sm">{{$t('日期')}}</th>
+              <th class="th-sm">{{$t('期号')}}</th>
             </tr>
           </thead>
           <!--Table head-->
 
           <!--Table body-->
           <tbody>
-            <tr v-for="hitem in historiesList">
-              <th class="d-none d-sm-block" scope="row">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+            <tr v-for="(hitem, key) in historiesList" :key="key">
+              <th class="d-none d-sm-block" scope="row">{{key+1}}</th>
               <td>{{hitem.expect}}</td>
               <td>{{hitem.opentime}}</td>
-              <td>{{hitem.opencode}}</td>
+              <!-- <td>{{hitem.opencode}} </td> -->
+              <td>
+                <div class="balls small-12 medium-3 columns">
+                  <div class="ball grey" v-for="hcode in hitem.codes">
+                    <div>
+                      <span>{{hcode}}</span>
+                    </div>
+                  </div>
+                </div>
+              </td>
             </tr>
           </tbody>
           <!--Table body-->
@@ -69,7 +78,7 @@
         <!--Table-->
       </div>
       <div class="ctrl-btns">
-        <b-button @click="getHistories" class="btn-more" size="lg" variant="dark">查看更多</b-button>
+        <b-button @click="getHistories" class="btn-more" size="lg" variant="dark">{{$t('查看更多')}}</b-button>
         <!-- <b-button block variant="primary">查看更多...</b-button> -->
       </div>
     </section>
@@ -80,6 +89,22 @@
 // import Logo from '~/components/Logo.vue';
 // import LottoSingle  from '~/components/LottoSingle.vue';
 export default {
+  head () {
+    return {
+      title: '亚洲娱乐网 - ' + this.title,
+      meta: [
+        { charset: 'utf-8' },
+        { 'http-equiv': 'X-UA-Compatible', content:'ie=edge' },
+
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { hid: 'description', name: 'description', content: this.title + '祝您中奖' }
+      ],
+
+      script: [
+
+      ]
+    };
+  },
   components: {},
   data: function() {
     return {
@@ -121,7 +146,7 @@ export default {
         });
     },
     getHistories: function() {
-      this.historyCnt += 5;
+      this.historyCnt += 20;
       this.$axios
         .$get(
           "/race168/vv16888/api.php?type=" +
@@ -133,7 +158,8 @@ export default {
           if (res instanceof Object) {
             let data = res["data"];
             if (data instanceof Array) {
-              this.historiesList = data;
+              
+              this.historiesList = data.map(v => { v.codes = v.opencode.split(','); return v; });
             }
           }
         });
@@ -312,6 +338,13 @@ export default {
     background-color: white;
     .ctrl-btns {
       text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    @media (max-width: 767.9px) {
+      .table th, .table td {
+        display: inline-block;
+      }
     }
   }
   #lotto.container-fluid {
@@ -377,7 +410,8 @@ export default {
         border-radius: 50%;
         text-align: center;
         line-height: ($lottoball / 2);
-        font-size: 14px;
+        font-size: 21px;
+        color: #202020;
         font-weight: bold;
         background: #ffffff;
         display: flex;
@@ -396,6 +430,9 @@ export default {
     }
     &.yellow {
       background: linear-gradient(to right, #ffe259, #ffa751);
+    }
+    &.grey {
+      background: linear-gradient(to right, #5c5c5c, #3d3d3d);
     }
   }
 }

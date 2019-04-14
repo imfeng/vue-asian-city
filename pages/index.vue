@@ -1,7 +1,13 @@
 <template>
 <div class="content">
-  <section class="banner-cont container-fluid">
-    <img class="banner-img" src="../assets/images/banner-2.jpg" />
+  <Banner />
+  <section class="logos">
+    <div class="logo"><img src="../assets/images/logos/key2.png" alt="key iamge"></div>
+        <div class="logo"><img src="../assets/images/logos/auth.png" alt="auth iamge"></div>
+    <div class="logo"><img src="../assets/images/logos/ssl.png" alt="ssj iamge"></div>
+        <div class="logo"><img src="../assets/images/logos/kroo.png" alt="casino iamge"></div>
+
+    <div class="logo"><img src="../assets/images/logos/nok.png" alt=""></div>
   </section>
   	<div class="agileits-services" id="services">
 		  <div class="container">
@@ -49,11 +55,26 @@
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue';
+// import Logo from '~/components/Logo.vue';
 import LottoOne  from '~/components/LottoOne.vue';
+import Banner from '~/components/Banner.vue'
 export default {
+  head: {
+    title: '亚洲娱乐网 - 首页',
+    meta: [
+      { charset: 'utf-8' },
+      { 'http-equiv': 'X-UA-Compatible', content:'ie=edge' },
+
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { hid: 'description', name: 'description', content: '各式乐透彩球，祝您中奖，好处多多。' }
+    ],
+
+    script: [
+
+    ]
+  },
   components: {
-    Logo, LottoOne
+    LottoOne, Banner
   },  
   data: function() {
     return {
@@ -97,14 +118,50 @@ export default {
 </script>
 
 <style lang="scss">
-.banner-img {
-  width: 100%;
+
+section.logos {
+  background: #212121;
+  // overflow: hidden;
+  // max-height: 170px;
+  text-align: center;
+  padding: 1.5rem;
+  .logo {
+    display: inline;
+    margin-left: 50px;
+    img {
+      max-height: 120px;
+    }
+  }
 }
+  @media (min-width: 768px) {
+    section.logos {
+      
+      .logo {
+        
+        img {
+          max-height: 120px;
+        }
+      }
+    }
+  }
 .content {
   /* background-color:  #0f1314; */
   background-color:  #1a120f;
   
 }
-
+  @media (max-width: 767.9px) {
+    section.logos {
+      padding: .5rem;
+      .logo {
+        padding: 1rem 1rem;
+        margin: 1rem 0!important;
+        max-width: 33%;
+        img {
+          max-width: 32%;
+          max-height: 60px;
+        }
+      }
+    }
+  }
 
 </style>

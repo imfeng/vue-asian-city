@@ -1,17 +1,24 @@
 <template>
     <div id="page-about">
-      <logo />
+      <Banner />
       <section class="container-fluid">
         <div class="agileits-services" id="services">
 		      <h2 class="heading text-capitalize"> 关于我们 </h2>
+          <div class="video">
+            <video autoplay preload="auto" poster="../assets/images/lotto-video.jpg" loop>
+              <source src="../assets/lotto.mp4" type="video/mp4">
+              Your browser does not support HTML5 video.
+            </video>
+              
+          </div>
           <div class="content">
             <ol class="tt">
-            <li>本公司在英属维京群岛 British Virgin Islands注册为合法开彩公司</li>
-            <li>本公司秉持公平公正公开的信念，全彩种采用合法的Smartplay Inc摇奖机开彩</li>
-            <li>本公司拥有强大的工程团队，可以提供稳定的API和客制化系统制作</li>
-            <li>目前与本公司合作的平台已达上百家，诚信开奖是本公司的最大核心理念</li>
-            <li>连络我们 微信 </li>
-            <li>欢迎加入我们的团队，共同创造无限未来</li>
+            <li>{{$t('ABOUT_ME_1')}}</li>
+            <li>{{$t('ABOUT_ME_2')}}</li>
+            <li>{{$t('ABOUT_ME_3')}}</li>
+            <li>{{$t('ABOUT_ME_4')}}</li>
+            <li>{{$t('ABOUT_ME_5')}}</li>
+            <li>{{$t('ABOUT_ME_6')}}</li>
             </ol>
           </div>
         </div>
@@ -21,22 +28,48 @@
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
+import Banner from '~/components/Banner.vue'
 
 export default {
+  head: {
+    title: '亚洲娱乐网 - 关于我们',
+    meta: [
+      { charset: 'utf-8' },
+      { 'http-equiv': 'X-UA-Compatible', content:'ie=edge' },
+
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { hid: 'description', name: 'description', content: '关于我们' }
+    ],
+
+    script: [
+
+    ]
+  },
   components: {
-    Logo
+    Banner
   }
 }
 </script>
 
 <style lang="scss">
 #page-about {
+  .video {
+    // max-width: 700px;
+    max-height: 310px;
+    margin: 1rem auto;
+    video {
+      max-height: 100%;
+      width: 450px;
+      max-width: 90%;
+    }
+  }
 .content {
   .tt {
+    padding: 0 1rem;
     margin: 1rem auto;
     max-width: 600px;
     li {
+      margin-left: 1.3rem;
       text-align: left;
       color: #e2e2e2;
       font-size: 1.2rem;

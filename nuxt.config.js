@@ -3,10 +3,11 @@ const webpack = require('webpack')
 
 
 module.exports = {
-  mode: 'universal',
+  mode: 'universe',
   /*
   ** Headers of the page
   */
+
   head: {
     title: pkg.name,
     meta: [
@@ -15,7 +16,11 @@ module.exports = {
       { hid: 'description', name: 'description', content: pkg.description }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      {
+        rel: 'icon',
+        type: 'image/x-icon',
+        href: '/favicon.ico',
+      },
     ]
   },
 
@@ -36,6 +41,7 @@ module.exports = {
   */
   plugins: [
     { src: '~/plugins/font-awesome' },
+    // { src: '~/plugins/i18n.js' },
   ],
 
   /*
@@ -55,23 +61,40 @@ module.exports = {
       // ]
     }],
     ['nuxt-i18n', {
+      seo: false,
+      pages: {
+
+      },
       locales: ['en', 'cn', 'jp'],
-      defaultLocale: 'cn',
+      Strategy: 'prefix',
+      defaultLocaleRouteNameSuffix: 'default',
+      noPrefixDefaultLocale: false,
+      // defaultLocale: 'cn',
+      defaultLocale: {
+        locale: 'cn',
+        prefix: true
+      },
+      useRedirectCookie: true,
+      // redirectCookieKey: 'redirected',
       detectBrowserLanguage: {
         useCookie: true,
         cookieKey: 'i18n_redirected'
       },
+      
       locales: [
         {
           code: 'en',
+          iso: 'en-US',
           file: 'en.js'
         },
         {
           code: 'cn',
+          iso: 'zn-CN',
           file: 'cn.js'
         },
         {
           code: 'jp',
+          iso: 'ja-JP',
           file: 'jp.js'
         }
       ],
@@ -130,7 +153,7 @@ module.exports = {
     /*
     ** You can extend webpack config here
     */
-   vendor: ['axios']
+   vendor: ['axios', 'vue-i18n']
    ,
 
     extend(config, ctx) {
@@ -146,23 +169,59 @@ module.exports = {
       })
     ]
   },
+  // router: {
+  //   middleware: 'i18n'
+  // },
   generate: {
     routes: [
-      '/lotto/亚洲赛车-A1-75',
-      '/lotto/亚洲赛车-A2-120',
-      '/lotto/亚洲赛车-A3-300',
-      '/lotto/亚洲飞艇-B1-75',
-      '/lotto/亚洲飞艇-B2-120',
-      '/lotto/亚洲飞艇-B3-300',
-      '/lotto/亚洲快3-C1-75',
-      '/lotto/亚洲快3-C2-120',
-      '/lotto/亚洲快3-C3-300',
-      '/lotto/亚洲快3-C1-75',
-      '/lotto/亚洲快3-C2-120',
-      '/lotto/亚洲快3-C3-300',
-      '/lotto/亚洲时时彩-D1-75',
-      '/lotto/亚洲时时彩-D2-120',
-      '/lotto/亚洲时时彩-D3-300',
+      '/cn/lotto/亚洲赛车-A1-75',
+      '/cn/lotto/亚洲赛车-A2-120',
+      '/cn/lotto/亚洲赛车-A3-300',
+      '/cn/lotto/亚洲飞艇-B1-75',
+      '/cn/lotto/亚洲飞艇-B2-120',
+      '/cn/lotto/亚洲飞艇-B3-300',
+      '/cn/lotto/亚洲快3-C1-75',
+      '/cn/lotto/亚洲快3-C2-120',
+      '/cn/lotto/亚洲快3-C3-300',
+      '/cn/lotto/亚洲快3-C1-75',
+      '/cn/lotto/亚洲快3-C2-120',
+      '/cn/lotto/亚洲快3-C3-300',
+      '/cn/lotto/亚洲时时彩-D1-75',
+      '/cn/lotto/亚洲时时彩-D2-120',
+      '/cn/lotto/亚洲时时彩-D3-300',
+      /* */
+      '/en/lotto/亚洲赛车-A1-75',
+      '/en/lotto/亚洲赛车-A2-120',
+      '/en/lotto/亚洲赛车-A3-300',
+      '/en/lotto/亚洲飞艇-B1-75',
+      '/en/lotto/亚洲飞艇-B2-120',
+      '/en/lotto/亚洲飞艇-B3-300',
+      '/en/lotto/亚洲快3-C1-75',
+      '/en/lotto/亚洲快3-C2-120',
+      '/en/lotto/亚洲快3-C3-300',
+      '/en/lotto/亚洲快3-C1-75',
+      '/en/lotto/亚洲快3-C2-120',
+      '/en/lotto/亚洲快3-C3-300',
+      '/en/lotto/亚洲时时彩-D1-75',
+      '/en/lotto/亚洲时时彩-D2-120',
+      '/en/lotto/亚洲时时彩-D3-300',
+      /* */
+
+      '/jp/lotto/亚洲赛车-A1-75',
+      '/jp/lotto/亚洲赛车-A2-120',
+      '/jp/lotto/亚洲赛车-A3-300',
+      '/jp/lotto/亚洲飞艇-B1-75',
+      '/jp/lotto/亚洲飞艇-B2-120',
+      '/jp/lotto/亚洲飞艇-B3-300',
+      '/jp/lotto/亚洲快3-C1-75',
+      '/jp/lotto/亚洲快3-C2-120',
+      '/jp/lotto/亚洲快3-C3-300',
+      '/jp/lotto/亚洲快3-C1-75',
+      '/jp/lotto/亚洲快3-C2-120',
+      '/jp/lotto/亚洲快3-C3-300',
+      '/jp/lotto/亚洲时时彩-D1-75',
+      '/jp/lotto/亚洲时时彩-D2-120',
+      '/jp/lotto/亚洲时时彩-D3-300',
     ]
   }
 }
