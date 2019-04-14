@@ -32,7 +32,7 @@
 
         </div>
         <div class="ctrl-btns">
-             <b-button @click="getHistories" class="btn-more" size="lg" variant="dark">查看更多</b-button>
+             <b-button class="btn-more" size="lg" variant="dark">查看更多</b-button>
             <!-- <b-button block variant="primary">查看更多...</b-button> -->
         </div>
           </div>

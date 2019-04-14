@@ -27,7 +27,7 @@ module.exports = {
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#fff' },
+  loading: { color: '#ccb520', failedColor: '#fff' },
 
   /*
   ** Global CSS
@@ -138,7 +138,7 @@ module.exports = {
       // 引入 fas 所有的icon
       {
         set: '@fortawesome/free-solid-svg-icons',
-        icons: ['fas']
+        icons: ['faBell', 'faBellSlash']
       },
     ]
   },
@@ -156,8 +156,12 @@ module.exports = {
    vendor: ['axios', 'vue-i18n']
    ,
 
-    extend(config, ctx) {
-    },
+   extend(config, ctx) {
+    config.module.rules.push({
+      test: /\.mp3$/,
+      loader: 'file-loader',
+    });
+  },
     vendor: ['bootstrap'],
     plugins: [
       // 這麼寫可以在 .vue 中拿到 $

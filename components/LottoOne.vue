@@ -71,6 +71,9 @@ export default {
     }
     
     return {
+      opt: {},
+      $ball: {},
+      isRotating: false,
       intervalIns: null,
       audio: {},
       alarm: false,
@@ -94,29 +97,37 @@ export default {
     this.updateApi();
   },
   mounted() {
-    let audio= new Audio("beep.mp3");
+    this.isRotating = false;
+    let audio= new Audio(require('../static/beep.mp3'));
     audio.volume = 0.5;
     this.audio = audio;
     this.intervalIns = setInterval(() => {
-      let expireTime =
-        new Date(this.item.opentime).getTime() + this.item.interval * 1000;
-      let now = new Date().getTime();
-
-      this.countdownRemain = expireTime - now;
       
+      this.counting();
+    }, 1000);
+  },
+  methods: {
+    startCounting: function() {
+
+    },
+    counting: function() {
+      if(!this.item.opentime) { return; }
+      this.item.opentime = this.item.opentime.replace(/-/g,'/');
+      let expireTime = new Date(this.item.opentime).getTime() + this.item.interval * 1000;
+      let now = new Date().getTime();
+      this.countdownRemain = expireTime - now;
       //? seems no need excepttion handler, itll back to here  :bind=opentime
       if (this.countdownRemain < 0) {
         //? <999
         // this.countdownRemain = 0;
         this.updateApi();
+        this.ballRotaing(true);
       }
-      if(!this.alarm) return;
-      if (this.countdownRemain < 9001) {
-        this.audio.play();
+      if (this.countdownRemain < 10001) {
+        if(this.alarm) {this.audio.play();};
+        if(!this.isRotating) { this.ballStandbyOut()}
       }
-    }, 1000);
-  },
-  methods: {
+    },
     toggleAlarm: function() {
       this.alarm = !this.alarm;
     },
@@ -125,7 +136,7 @@ export default {
       // console.log(eid);
 
       let $ball = $(eid + " > div");
-      // console.log($ball)
+      this.$ball = $ball;
       let gutter = 0;
       let opt = {
         // standard foundation guttering
@@ -140,50 +151,70 @@ export default {
         i: 0
       };
       opt.perimeter = opt.perimeter * opt.diameter;
-
-      // the time between balls rolling
-      let interval = setInterval(() => {
-        // if we have number balls
-        if (opt.i > opt.n) clearInterval(interval);
-        // use the column var to gauage rolling width
-        this.ballRotaing(opt, $ball);
-        // up dee count
-        opt.i++;
-      }, 200);
+      this.opt = opt;
+      this.ballRotaing();
+      // // the time between balls rolling
+      // let interval = setInterval(() => {
+      //   // if we have number balls
+      //   if (opt.i > opt.n) clearInterval(interval);
+      //   // use the column var to gauage rolling width
+      //   this.ballRotaing(opt, $ball);
+      //   // up dee count
+      //   opt.i++;
+      // }, 200);
     },
-    // get the balls rolling
-    ballRotaing: function(opt, $ball) {
+    ballStandbyOut: function() {
+      
+      this.$ball.each(function(index) {
+        $(this).addClass('rotating-class');
+      });
+      this.isRotating = true;
+    },
+    ballRotaing: function(isOut = false) {
+      let $ball = this.$ball, opt = this.opt;
       let distance = opt.ballHold - opt.diameter * (opt.i % opt.total);
       let depth = Math.floor(opt.i / opt.total);
-      var degree = (distance * 360) / opt.perimeter,
+      let degree = (distance * 360) / opt.perimeter,
         // reusuable transition
-        transition = "2s cubic-bezier(1.000, 1.450, 0.185, 0.850)",
-        opacity = "1";
+        transition = ((!isOut) ? '1.5' : '0.75') + "s cubic-bezier(1.000, 1.450, 0.185, 0.850)",
+        opacity = (!isOut) ? 1 : 0;
+      let offset = (!isOut) ? 0 : 200;
 
       // rotate the balls
       $ball
-        .eq(opt.i)
-        .css({
-          transition: transition,
-          transform: "translateX(" + 0 + "px)",
-          top: depth * opt.diameter,
-          opacity: opacity
-
-          // rotate the inner text
-        })
-        .find("div")
-        .css({
-          transition: transition,
-          transform: "rotate(" + degree + "deg)"
-
-          // on animation end, rotate all the balls back to their starting position
-        })
-        .one(
-          "webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend",
-          function() {
-            $(this).css("transform", "rotate(0)");
+        .each(function(index) {
+          let that = $(this);
+          if(isOut) {
+            this.isRotating = false;
+            that.removeClass('rotating-class');
           }
-        );
+          setTimeout(function() {
+            
+            that.css({
+              transition: transition,
+              transform: "translateX(" + offset + "px)",
+              top: depth * opt.diameter,
+              opacity: opacity
+
+              // rotate the inner text
+            })
+            .find("div")
+            .css({
+              transition: transition,
+              transform: "rotate(" + 720 + "deg)"
+
+              // on animation end, rotate all the balls back to their starting position
+            })
+            .one(
+              "webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend",
+              function() {
+                $(this).css("transform", "rotate(0deg)");
+              }
+            );
+          }, index * 200);
+          
+        });
+        // .eq(opt.i)
     },
     updateApi: function() {
       // console.log(this.title + 'GET:');
@@ -201,7 +232,7 @@ export default {
               this.didLoad = true;
               setTimeout(() => {
                 this.ballStartRotate("balls-" + this.gameId);
-              }, 700);
+              }, 500);
             }
           }
         });
@@ -325,6 +356,8 @@ $lottoball: 40px;
     }
   }
   .ball {
+
+    // animation-direction: forward;
     // position: relative;
     display: inline-block;
     margin: 5px;
@@ -338,7 +371,7 @@ $lottoball: 40px;
     background: #004e99;
     border-radius: 50%;
     transition: all 0.7s ease-out;
-
+    
     &.drop {
       bottom: 10px;
       //transition: 2s cubic-bezier(1.000, 1.450, 0.185, 0.850);
@@ -380,5 +413,28 @@ $lottoball: 40px;
       background: linear-gradient(to right, #ffe259, #ffa751);
     }
   }
+
+}
+  .rotating-class{
+    animation-name: rotating;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    -webkit-animation-name: rotatingball;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-iteration-count: infinite;
+    -ms-animation-name: rotatingball;
+    -ms-animation-duration: 1s;
+    -ms-animation-iteration-count: infinite;
+    -moz-animation-name: rotatingball;
+    -moz-animation-duration: 1s;
+    -moz-animation-iteration-count: infinite;
+    -o-animation-name: rotatingball;
+    -o-animation-duration: 1s;
+    -o-animation-iteration-count: infinite;
+    animation-delay: 0;
+    -webkit-animation-delay: 0;
+    -ms-animation-delay: 0;
+    -moz-animation-delay: 0;
+    -o-animation-delay: 0;
 }
 </style>

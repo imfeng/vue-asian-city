@@ -140,6 +140,10 @@ export default {
 </script>
 <style lang="scss"> 
 #main-nav {
+  .dropdown-item:hover, .dropdown-item:focus {
+
+      background-color: #cfcfcf;
+  }
     @media (max-width: 768px) {
         .dropdown-submenu {
             .dropdown-menu.submenu {

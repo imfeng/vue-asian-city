@@ -17,7 +17,7 @@
                   </span>
                 </h4>
                 <div v-bind:id="'balls-'+gameId" class="balls small-12 medium-3 columns">
-                  <div class="ball yellow" v-for="code in item.codes">
+                  <div class="ball stand yellow" v-for="code in item.codes">
                     <div>
                       <span>{{code}}</span>
                     </div>
@@ -112,6 +112,9 @@ export default {
   components: {},
   data: function() {
     return {
+      opt: {},
+      $ball: {},
+      isRotating: false,
         alarm: false,
         audio: null,
       logo: "",
@@ -130,6 +133,26 @@ export default {
     };
   },
   methods: {
+    counting: function() {
+      let expireTime =
+        new Date(this.item.opentime).getTime() + this.item.interval * 1000;
+      let now = new Date().getTime();
+
+      this.countdownRemain = expireTime - now;
+      //? seems no need excepttion handler, itll back to here  :bind=opentime
+      if (this.countdownRemain < 0) {
+        //? <999
+        // this.countdownRemain = 0;
+        this.updateApi();
+        this.ballRotaing(true);
+      }
+      if (this.countdownRemain < 10001) {
+        if(this.alarm) {
+          this.audio.play();  
+        };
+        if(!this.isRotating) { this.ballStandbyOut()}
+      }
+    },
     updateApi: function() {
       this.$axios
         .$get("/vv16888/api.php?type=" + this.gameId)
@@ -143,10 +166,12 @@ export default {
               this.didLoad = true;
               // this.getHistories(false);
               this.historiesList.unshift(this.item);
-              console.log(this.item);
               //   setTimeout(() => {
               //     this.ballStartRotate('balls-'+this.gameId);
               //   }, 700);
+              setTimeout(() => {
+                this.ballStartRotate("balls-" + this.gameId);
+              }, 500);
             }
           }
         });
@@ -175,7 +200,7 @@ export default {
       // console.log(eid);
 
       let $ball = $(eid + " > div");
-      // console.log($ball)
+      this.$ball = $ball;
       let gutter = 0;
       let opt = {
         // standard foundation guttering
@@ -190,65 +215,78 @@ export default {
         i: 0
       };
       opt.perimeter = opt.perimeter * opt.diameter;
-
-      // the time between balls rolling
-      let interval = setInterval(() => {
-        // if we have number balls
-        if (opt.i > opt.n) clearInterval(interval);
-        // use the column var to gauage rolling width
-        this.ballRotaing(opt, $ball);
-        // up dee count
-        opt.i++;
-      }, 200);
+      this.opt = opt;
+      this.ballRotaing();
     },
     // get the balls rolling
-    ballRotaing: function(opt, $ball) {
+    ballStandbyOut: function() {
+      this.isRotating = true;
+      this.$ball.each(function(index) {
+        $(this).addClass('rotating-class');
+      });
+    },
+    ballRotaing: function(isOut = false) {
+      let $ball = this.$ball, opt = this.opt;
       let distance = opt.ballHold - opt.diameter * (opt.i % opt.total);
       let depth = Math.floor(opt.i / opt.total);
-      var degree = (distance * 360) / opt.perimeter,
+      let degree = (distance * 360) / opt.perimeter,
         // reusuable transition
-        transition = "2s cubic-bezier(1.000, 1.450, 0.185, 0.850)",
-        opacity = "1";
+        transition = ((!isOut) ? '1.5' : '0.75') + "s cubic-bezier(1.000, 1.450, 0.185, 0.850)",
+        opacity = (!isOut) ? 1 : 0;
+      let offset = (!isOut) ? 0 : 200;
 
       // rotate the balls
-      $ball
-        .eq(opt.i)
-        .css({
-          transition: transition,
-          transform: "translateX(" + distance + "px)",
-          top: depth * opt.diameter,
-          opacity: opacity
-
-          // rotate the inner text
-        })
-        .find("div")
-        .css({
-          transition: transition,
-          transform: "rotate(" + degree + "deg)"
-
-          // on animation end, rotate all the balls back to their starting position
-        })
-        .one(
-          "webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend",
-          function() {
-            $(this).css("transform", "rotate(0)");
+      this.$ball
+        .each(function(index) {
+          let that = $(this);
+          if(isOut) {
+            this.isRotating = false;
+            that.removeClass('rotating-class');
           }
-        );
+          setTimeout(function() {
+            
+            that.css({
+              transition: transition,
+              transform: "translateX(" + offset + "px)",
+              top: depth * opt.diameter,
+              opacity: opacity
+
+              // rotate the inner text
+            })
+            .find("div")
+            .css({
+              transition: transition,
+              transform: "rotate(" + 720 + "deg)"
+
+              // on animation end, rotate all the balls back to their starting position
+            })
+            .one(
+              "webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend",
+              function() {
+                $(this).css("transform", "rotate(0)");
+              }
+            );
+          }, index * 200);
+          
+        });
+        // .eq(opt.i)
     },
     toggleAlarm: function() {
       console.log(this.alarm)
       this.alarm = !this.alarm;
     },
   },
-  asyncData({ params }) {
-    console.log("===========asyncData============");
-    // const [slug, id]  = params.slugid.split("-")
-    console.log(params);
+  beforeDestroy: function() {
+    this.audio.pause();
+    clearInterval(this.intervalIns);
   },
   // ? no idea why cant use here
   // beforeMount: function() {
   //   this.updateApi();
   // },
+  beforeMount() {
+    // this.updateApi();
+  },
   mounted: function() {
     console.log("===========mounted============");
     console.log(this.$route.params);
@@ -262,40 +300,13 @@ export default {
 
     //* combine api countdown beep
     this.updateApi();
-    let audio = new Audio("beep.mp3");
+    let audio = new Audio(require('../../static/beep.mp3'));
     audio.volume = this.volume;
     this.audio = audio;
     console.log(audio);
  
-    setInterval(() => {
-      let expireTime =
-        new Date(this.item.opentime).getTime() + this.item.interval * 1000;
-      let now = new Date().getTime();
-
-      this.countdownRemain = expireTime - now;
-      //? seems no need excepttion handler, itll back to here  :bind=opentime
-      if (this.countdownRemain < 0) {
-        //? <999
-        // this.countdownRemain = 0;
-        this.updateApi();
-      }
-      if(!this.alarm) return;
-      if (this.countdownRemain < 9001) {
-        let playPromise = this.audio.play();  
-        if (playPromise !== undefined) {
-          playPromise.then(_ => {
-            // Automatic playback started!
-            // Show playing UI.
-            // We can now safely pause video...
-            this.audio.pause();
-          })
-          .catch(error => {
-            console.warn(error);
-            // Auto-play was prevented
-            // Show paused UI.
-          });
-        }
-      }
+    this.intervalIns = setInterval(() => {
+      this.counting();
     }, 1000);
 
     this.getHistories();
@@ -405,11 +416,18 @@ export default {
   //   position: relative;
   // }
   .ball {
+    &.stand {
+      opacity: 0;
+      transform: translateX(-200px);
+    }
     position: relative;
     display: inline-block;
     margin: 5px;
+    // opacity: 0;
     //   opacity: 0;
-    //   left: -($lottoball * 1.5);
+    // left: -($lottoball * 1.5);
+    // transform: translateX(-200px);
+
     //   position: absolute;
     //   bottom: 55px;
 
