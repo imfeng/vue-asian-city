@@ -21,42 +21,46 @@
                 <li class="dropdown-submenu">
                   <a class="dropdown-item dropdown-toggle">{{$t('亚洲赛车')}}</a>
                   <ul class="dropdown-menu submenu">
-                    <a href="/en/lotto/亚洲赛车-A1-75">Asian racing - 75s</a>
-                    <a href="/lotto/亚洲赛车-A1-75" class="dropdown-item" role="menuitem" target="_self">{{$t('亚洲赛车')}} - 75s</a>
-                    <a href="/lotto/亚洲赛车-A2-120"  class="dropdown-item" role="menuitem" target="_self">{{$t('亚洲赛车')}} - 120s</a>
-                    <a href="/lotto/亚洲赛车-A3-300"  class="dropdown-item" role="menuitem" target="_self">{{$t('亚洲赛车')}} - 300s</a>
+                    <b-dropdown-item to="/lotto/亚洲赛车-A1-75">{{$t('亚洲赛车')}} - 75s</b-dropdown-item>
+                    <b-dropdown-item to="/lotto/亚洲赛车-A2-120">{{$t('亚洲赛车')}} - 120s</b-dropdown-item>
+                    <b-dropdown-item to="/lotto/亚洲赛车-A3-300">{{$t('亚洲赛车')}} - 300s</b-dropdown-item>
                   </ul>
                 </li>
                 <li class="dropdown-submenu">
                   <a class="dropdown-item dropdown-toggle">{{$t('亚洲飞艇')}}</a>
                   <ul class="dropdown-menu submenu">
-                    <a href="/lotto/亚洲飞艇-B1-75" class="dropdown-item" role="menuitem" target="_self">{{$t('亚洲飞艇')}} - 75s</a>
-                    <a href="/lotto/亚洲飞艇-B2-120"  class="dropdown-item" role="menuitem" target="_self">{{$t('亚洲飞艇')}} - 120s</a>
-                    <a href="/lotto/亚洲飞艇-B3-300"  class="dropdown-item" role="menuitem" target="_self">{{$t('亚洲飞艇')}} - 300s</a>
+                    <b-dropdown-item to="/lotto/亚洲飞艇-B1-75">{{$t('亚洲飞艇')}} - 75s</b-dropdown-item>
+                    <b-dropdown-item to="/lotto/亚洲飞艇-B2-120">{{$t('亚洲飞艇')}} - 120s</b-dropdown-item>
+                    <b-dropdown-item to="/lotto/亚洲飞艇-B3-300">{{$t('亚洲飞艇')}} - 300s</b-dropdown-item>
                   </ul>
                 </li>
                 <li class="dropdown-submenu">
                   <a class="dropdown-item dropdown-toggle">{{$t('亚洲快3')}}</a>
                   <ul class="dropdown-menu submenu">
-                    <a href="/lotto/亚洲快3-C1-75" class="dropdown-item" role="menuitem" target="_self">{{$t('亚洲快3')}} - 75s</a>
-                    <a href="/lotto/亚洲快3-C2-120"  class="dropdown-item" role="menuitem" target="_self">{{$t('亚洲快3')}} - 120s</a>
-                    <a href="/lotto/亚洲快3-C3-300"  class="dropdown-item" role="menuitem" target="_self">{{$t('亚洲快3')}} - 300s</a>
+                    <b-dropdown-item to="/lotto/亚洲快3-C1-75">{{$t('亚洲快3')}} - 75s</b-dropdown-item>
+                    <b-dropdown-item to="/lotto/亚洲快3-C2-120">{{$t('亚洲快3')}} - 120s</b-dropdown-item>
+                    <b-dropdown-item to="/lotto/亚洲快3-C3-300">{{$t('亚洲快3')}} - 300s</b-dropdown-item>
                   </ul>
                 </li>
                 <li class="dropdown-submenu">
                   <a class="dropdown-item dropdown-toggle">{{$t('亚洲时时彩')}}</a>
                   <ul class="dropdown-menu submenu">
-                    <a href="/lotto/亚洲时时彩-D1-75" class="dropdown-item" role="menuitem" target="_self">{{$t('亚洲时时彩')}} - 75s</a>
-                    <a href="/lotto/亚洲时时彩-D2-120"  class="dropdown-item" role="menuitem" target="_self">{{$t('亚洲时时彩')}} - 120s</a>
-                    <a href="/lotto/亚洲时时彩-D3-300"  class="dropdown-item" role="menuitem" target="_self">{{$t('亚洲时时彩')}} - 300s</a>
+                    <b-dropdown-item to="/lotto/亚洲时时彩-D1-75">{{$t('亚洲时时彩')}} - 75s</b-dropdown-item>
+                    <b-dropdown-item to="/lotto/亚洲时时彩-D2-120">{{$t('亚洲时时彩')}} - 120s
+                    </b-dropdown-item>
+                    <b-dropdown-item to="/lotto/亚洲时时彩-D3-300">{{$t('亚洲时时彩')}} - 300s
+                    </b-dropdown-item>
                   </ul>
                 </li>
                 <li class="dropdown-submenu">
                   <a class="dropdown-item dropdown-toggle">{{$t('亚洲11选5')}}</a>
                   <ul class="dropdown-menu submenu">
-                    <a href="/lotto/亚洲11选5-E1-75" class="dropdown-item" role="menuitem" target="_self">{{$t('亚洲11选5')}} - 75s</a>
-                    <a href="/lotto/亚洲11选5-E2-120"  class="dropdown-item" role="menuitem" target="_self">{{$t('亚洲11选5')}} - 120s</a>
-                    <a href="/lotto/亚洲11选5-E3-300"  class="dropdown-item" role="menuitem" target="_self">{{$t('亚洲11选5')}} - 300s</a>
+                    <b-dropdown-item href="/lotto/亚洲11选5-E1-75">{{$t('亚洲11选5')}} - 75s
+                    </b-dropdown-item>
+                    <b-dropdown-item href="/lotto/亚洲11选5-E2-120">{{$t('亚洲11选5')}} - 120s
+                    </b-dropdown-item>
+                    <b-dropdown-item href="/lotto/亚洲11选5-E3-300">{{$t('亚洲11选5')}} - 300s
+                    </b-dropdown-item>
                   </ul>
                 </li>
                 </no-ssr>

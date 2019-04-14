@@ -22,7 +22,7 @@ export default {
   data() {
     return {
       // apiServer: "http://knem.chickenkiller.com/race168/vv16888/api.php"
-      apiServer: "/api-service"
+      apiServer: "/"
 
   };
   },
