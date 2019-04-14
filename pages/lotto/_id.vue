@@ -29,9 +29,12 @@
           
         <div class="col-md-3 resultheader">
           <h4 class="resulttxt2">{{$t('距离下次开彩')}}
-            <b-button v-if="alarm" @click="toggleAlarm" variant="light" size="sm"><fa :icon="['fas', 'bell']" /></b-button>
-            <b-button v-if="!alarm" @click="toggleAlarm" variant="light" size="sm"><fa :icon="['fas', 'bell-slash']" /></b-button></h4>
-          
+            <button @click="toggleAlarm" type="button" class="btn btn-light btn-sm">
+              <fa v-if="alarm" class="" :icon="['fas', 'bell']" />
+              <fa v-else class="" :icon="['fas', 'bell-slash']" />
+            </button>
+
+          </h4>
           <div v-if="didLoad" class="countdown">{{ countdown }}</div>
         </div>
         </div>
@@ -129,7 +132,7 @@ export default {
   methods: {
     updateApi: function() {
       this.$axios
-        .$get("/race168/vv16888/api.php?type=" + this.gameId)
+        .$get("/vv16888/api.php?type=" + this.gameId)
         .then(res => {
           if (res instanceof Object) {
             let data = res["data"];
@@ -138,7 +141,8 @@ export default {
               this.item["codes"] = this.item["opencode"].split(",");
               this.item["currentSeries"] = this.item["expect"].slice(-3);
               this.didLoad = true;
-              this.getHistories(false);
+              // this.getHistories(false);
+              this.historiesList.unshift(this.item);
               console.log(this.item);
               //   setTimeout(() => {
               //     this.ballStartRotate('balls-'+this.gameId);
@@ -151,7 +155,7 @@ export default {
       if(plus) { this.historyCnt += 20; }
       this.$axios
         .$get(
-          "/race168/vv16888/api.php?type=" +
+          "/vv16888/api.php?type=" +
             this.gameId +
             "&rows=" +
             this.historyCnt
@@ -232,6 +236,7 @@ export default {
         );
     },
     toggleAlarm: function() {
+      console.log(this.alarm)
       this.alarm = !this.alarm;
     },
   },
@@ -260,6 +265,8 @@ export default {
     let audio = new Audio("beep.mp3");
     audio.volume = this.volume;
     this.audio = audio;
+    console.log(audio);
+ 
     setInterval(() => {
       let expireTime =
         new Date(this.item.opentime).getTime() + this.item.interval * 1000;
@@ -274,7 +281,20 @@ export default {
       }
       if(!this.alarm) return;
       if (this.countdownRemain < 9001) {
-        this.audio.play();
+        let playPromise = this.audio.play();  
+        if (playPromise !== undefined) {
+          playPromise.then(_ => {
+            // Automatic playback started!
+            // Show playing UI.
+            // We can now safely pause video...
+            this.audio.pause();
+          })
+          .catch(error => {
+            console.warn(error);
+            // Auto-play was prevented
+            // Show paused UI.
+          });
+        }
       }
     }, 1000);
 

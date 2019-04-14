@@ -71,22 +71,8 @@ export default {
     };
   },
   mounted() {
-    // ! meth1    application/json
-    // this.$axios.get("/api/race168/vv16888/api.php?type=A1").then(res => {
-    //   console.log(res);
-    // });
-    // ! meth2
-    
-    // fetch(this.apiServer + "/race168/vv16888/api.php?type=A1", {
-    //   method: "GET",
-    //   mode: "no-cors",
-    // //   body: JSON.stringify()//data
-    // })
-    //   .then(res => console.log(res))
-    //   .then(data => {
-    //     // console.log(data);
-    //   });
-    this.$axios.$get(this.apiServer + "/race168/vv16888/api.php?type=A1")
+
+    this.$axios.$get(this.apiServer + "/vv16888/api.php?type=A1")
     .then(res => {
       console.log(res);
       if(res instanceof Object) {
@@ -97,17 +83,7 @@ export default {
         }
       }
     });
-    // ! meth 3
-    // const url = this.apiServer + '?type=A1';
-    // fetch(url, {mode: 'no-cors'}) // for local test use-only
-    // // .then(response => response.json())
-    // .then(data=> {
-    //   //this.lottos = data
-    //   console.log(data)
-    //   //   this.lottos = ['asd','asd','asd']
-    // })
 
-    // TODO : setInterval 1000ms update time
   },
   methods: {
     // todo: time's up call update() => lottos. $data

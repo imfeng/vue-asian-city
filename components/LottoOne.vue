@@ -188,7 +188,7 @@ export default {
     updateApi: function() {
       // console.log(this.title + 'GET:');
       this.$axios
-        .$get("/race168/vv16888/api.php?type=" + this.gameId)
+        .$get("/vv16888/api.php?type=" + this.gameId)
         .then(res => {
           if (res instanceof Object) {
             let data = res["data"];

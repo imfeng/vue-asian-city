@@ -144,7 +144,7 @@ module.exports = {
   },
   proxy: [
     ['/api',
-      { target: 'http://knem.chickenkiller.com', pathRewrite: { '^/api-service': '' } }]
+      { target: 'http://vv16888.net', pathRewrite: { '^/api-service': '' } }]
 ],
   /*
   ** Build configuration
