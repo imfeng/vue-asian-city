@@ -1,66 +1,43 @@
 <template>
     <div id="page-news">
-  <!-- <Banner /> -->
+  <Banner />
       <section class="container-fluid">
         <div class="agileits-services" id="services">
 		      <h2 class="heading text-capitalize"> 最新消息 </h2>
-          <div class="content">
-            <div class="table-responsive">
-               <div class="overflow-auto">
+          <div class="content container">
+           
+
 
 
     <!-- <p class="mt-3">Current Page: {{ currentPage }}</p> -->
-
+<b-spinner v-if="!didLoad" class="ltt-spinner" variant="primary" label="Spinning"></b-spinner>
     <b-table
+    responsive="true"
       id="my-table"
+      class="table-responsive"
       :fields="fields"
       :items="items"
-      small
-    ></b-table>
-    <!--       :items="items"
       :per-page="perPage"
       :total-rows="rows"
-      :current-page="currentPage" -->
+      :current-page="currentPage"
+      small
+    ></b-table>
     <b-pagination
       class="justify-content-center"
       size="sm"
       v-model="currentPage"
       :total-rows="rows"
       :per-page="perPage"
-
+      aria-controls="my-table"
       @change="pageChange"
+      variant="dark"
     ></b-pagination>
-    <!--       aria-controls="my-table" -->
-  </div>
 
-            <!--Table-->
-            <table class="table">
 
-                <!--Table head-->
-                <thead>
-                <tr>
-                    <th>#</th>
-                    <th class="th-sm">發佈日期</th>
-                    <th class="th-sm">標題</th>
-                </tr>
-                </thead>
-                <!--Table head-->
-
-                <!--Table body-->
-                <tbody>
-                    
-
-                </tbody>
-                <!--Table body-->
-
-            </table>
-            <!--Table-->
-
-        </div>
-        <div class="ctrl-btns">
+        <!-- <div class="ctrl-btns">
              <b-button class="btn-more" size="lg" variant="dark">查看更多</b-button>
-            <!-- <b-button block variant="primary">查看更多...</b-button> -->
-        </div>
+            <b-button block variant="primary">查看更多...</b-button>
+        </div> -->
           </div>
         </div>
         
@@ -73,27 +50,38 @@ import Banner from '~/components/Banner.vue';
 import Paginate from '~/components/Paginate.vue';
 
 export default {
-  computed: {
-      rows() {
-        return this.items.length
-      }
-  },
+
   data() {
     return {
+      didLoad: false,
       pageCount: 10,
-      rows: 100,
+      rows: 0,
       perPage: 5,
       currentPage: 1,
-      fields: [{ key: 'id', label: '#', },
-        { key: 'title', label: '標題', },
-        { key: 'date', label: '發佈日期', }],
+      fields: [{ key: 'date', label: this.$i18n.t('Date'), },
+        { key: 'title', label: this.$i18n.t('Title'), },
+        { key: 'content', label: this.$i18n.t('Content'), }],
       items: [
-        { id: 1, title: 'Fred', date: '2019/12/12' },
-        { id: 2, title: 'Fred', date: '2019/12/12' },
-        { id: 3, title: 'Fred', date: '2019/12/12' },
-        { id: 4, title: 'Fred', date: '2019/12/12' },
+        { content: '@@@@@@@@@@@@@@@@@@@@@@@@@@@dasdasddqwd qwd qwd qwd qw qwd wq dwq qdqwd qwdq wdq wd qwdq wd efwef wef @@@@@@@@@@@@@@@@@@',
+          title: 'Fred asdasdasd asd asd asd as', date: '2019/12/12' },
+        // { id: 2, title: 'Fred', date: '2019/12/12' },
+        // { id: 3, title: 'Fred', date: '2019/12/12' },
+        // { id: 4, title: 'Fred', date: '2019/12/12' },
       ]
     }
+  },
+  mounted() {
+    this.$axios.$get('https://script.googleusercontent.com/macros/echo?user_content_key=ga1yf9_r2wIV3azl0ThhLCiUGMli4tYaE1u2mwma6JdBnlNhebRU7usqxZOua8kzIfOcUTuIgo4PF-_tblA0kmLKR2lIcFbim5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnLQi37cmPYA1b6YjKqxNk5C807tFmmHRFSJBE6CjJNVXJu9VaB2OjQFHifCTaSiyb8LyN_VEIsoN&lib=MTQXupb0zB-PxNrobIabZL0_dEq4q8EAS')
+    .then(res => {
+      // console.log(res)
+      // res = JSON.parse(res) || {};
+      if(res['results']) {
+        // this.items = res['results'];
+        this.rows = res['rows'];
+        this.didLoad = true;
+        // this.rows = 
+      }
+    })
   },
   methods: {
     pageChange: function(page) {
@@ -129,6 +117,9 @@ export default {
 
 <style lang="scss">
 #page-news {
+  h2.heading {
+    margin: 2rem auto;
+  }
   .table-sm td {
     padding: 0.3rem;
     color: white;
