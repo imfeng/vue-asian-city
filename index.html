@@ -1,0 +1,41 @@
+<!doctype html>
+<html data-n-head-ssr data-n-head="">
+
+<head data-n-head="">
+  <title data-n-head="true">亚洲娱乐网 - 首页</title>
+  <meta data-n-head="true" charset="utf-8">
+  <meta data-n-head="true" name="viewport" content="width=device-width,initial-scale=1">
+  <meta data-n-head="true" charset="utf-8">
+  <meta data-n-head="true" http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta data-n-head="true" name="viewport" content="width=device-width,initial-scale=1">
+  <meta data-n-head="true" data-hid="description" name="description" content="各式乐透彩球，祝您中奖，好处多多。">
+  <link data-n-head="true" rel="icon" type="image/x-icon" href="/favicon.ico">
+  <script type="text/javascript">
+    // and here's the trick (works everywhere)
+    function r(f){/in/.test(document.readyState)?setTimeout('r('+f+')',9):f()}
+    // use like
+    r(function(){
+      var language = navigator.language || navigator.browserLanguage || '';
+    
+      console.log(language);
+      
+      if (language.indexOf('en') > -1) {
+        window.location.replace('/en');
+      } else if(language.indexOf('jp') > -1 || language.indexOf('ja') > -1 || language.indexOf('JP') > -1) {
+        window.location.replace('/jp');
+      } else {
+        window.location.replace('/cn');
+      }
+    });
+    setTimeout(r, 800)
+    r();
+
+  </script>
+</head>
+
+<body data-n-head="">
+
+
+</body>
+
+</html>

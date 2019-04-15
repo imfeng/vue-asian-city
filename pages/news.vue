@@ -62,8 +62,8 @@ export default {
         { key: 'title', label: this.$i18n.t('Title'), },
         { key: 'content', label: this.$i18n.t('Content'), }],
       items: [
-        { content: '@@@@@@@@@@@@@@@@@@@@@@@@@@@dasdasddqwd qwd qwd qwd qw qwd wq dwq qdqwd qwdq wdq wd qwdq wd efwef wef @@@@@@@@@@@@@@@@@@',
-          title: 'Fred asdasdasd asd asd asd as', date: '2019/12/12' },
+        // { content: '@@@@@@@@@@@@@@@@@@@@@@@@@@@dasdasddqwd qwd qwd qwd qw qwd wq dwq qdqwd qwdq wdq wd qwdq wd efwef wef @@@@@@@@@@@@@@@@@@',
+          // title: 'Fred asdasdasd asd asd asd as', date: '2019/12/12' },
         // { id: 2, title: 'Fred', date: '2019/12/12' },
         // { id: 3, title: 'Fred', date: '2019/12/12' },
         // { id: 4, title: 'Fred', date: '2019/12/12' },
@@ -76,7 +76,7 @@ export default {
       // console.log(res)
       // res = JSON.parse(res) || {};
       if(res['results']) {
-        // this.items = res['results'];
+        this.items = res['results'];
         this.rows = res['rows'];
         this.didLoad = true;
         // this.rows = 

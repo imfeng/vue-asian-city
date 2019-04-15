@@ -1,6 +1,9 @@
 
 export default 
 {
+  "Date":"日期",
+"Title":"标题",
+"Content":"内容",
   "合作伙伴": "合作伙伴",
 "welcome": "welcome",
 "首页": "首页",
