@@ -166,7 +166,8 @@ export default {
               this.item["currentSeries"] = this.item["expect"].slice(-3);
               this.didLoad = true;
               // this.getHistories(false);
-              this.historiesList.unshift(this.item);
+              if ( this.historiesList !== [] && this.historiesList[0] == 1 && this.historiesList[0].expect != this.item.expect) 
+                this.historiesList.unshift(this.item);
               //   setTimeout(() => {
               //     this.ballStartRotate('balls-'+this.gameId);
               //   }, 700);
