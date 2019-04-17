@@ -121,9 +121,14 @@ export default {
     margin: 2rem auto;
   }
   .table-sm td {
-    padding: 0.3rem;
+    padding: 1rem 0.3rem;
     color: white;
 }
+ @media (max-width: 767.9px) {
+      .table-sm td {
+        display: inline-block;
+      }
+    }
   .table {
     th {
       color: white;

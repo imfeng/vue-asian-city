@@ -16,8 +16,8 @@
               <b-nav-item :to="localePath('index')">{{$t('首页')}}</b-nav-item>
               <b-nav-item :to="localePath('news')">{{$t('最新消息')}}</b-nav-item>
               <b-nav-item :to="localePath('about')">{{$t('关于我们')}}</b-nav-item>
+              <no-ssr>
               <b-nav-item-dropdown :text="$t('彩种')" right>
-                <no-ssr>
                 <li class="dropdown-submenu">
                   <a class="dropdown-item dropdown-toggle">{{$t('亚洲赛车')}}</a>
                   <ul class="dropdown-menu submenu">
@@ -63,8 +63,9 @@
                     </b-dropdown-item>
                   </ul>
                 </li>
-                </no-ssr>
               </b-nav-item-dropdown>
+                            </no-ssr>
+
               <b-nav-item-dropdown :text="$t('语言')" right>
                 <b-dropdown-item :to="localePath('index', 'cn')">CN</b-dropdown-item>
                   <b-dropdown-item :to="localePath('index', 'en')">EN</b-dropdown-item>
@@ -89,22 +90,21 @@
 <script>
 import Vue from 'vue';
 export default {
-    computed: {
-      locales() { return this.$store.state.locales },
-      locale() { return this.$store.state.locale }
-    },
     mounted() {
-        $('.dropdown-submenu').each(function(event) {
+      $(document).ready(function() {
+        $('#nav-collapse li.dropdown-submenu').each(function(ev) {
+
             let that = $(this);
             that.on('click', function(event) {
-                // console.log(that)
                 
                 let menu = that.children('.dropdown-menu.submenu');
                 menu.toggle();
+ 
                 event.preventDefault(); 
                 event.stopPropagation();
             });
         })
+      });       
         // $('.dropdown-submenu').on('click', function(event) {
         //     event.preventDefault(); 
         //     event.stopPropagation();
@@ -115,6 +115,9 @@ export default {
         
     },
     methods: {
+      submenu: function() {
+       
+      },
       switchLanguage (localeCode) {
         document.cookie = `locale=${localeCode}`;
         location.reload();
