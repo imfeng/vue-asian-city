@@ -50,7 +50,18 @@ import Banner from '~/components/Banner.vue';
 import Paginate from '~/components/Paginate.vue';
 
 export default {
+  head: {
+    title: '亚洲娱乐网 - 最新消息',
+    meta: [
+      { charset: 'utf-8' },
+      { 'http-equiv': 'X-UA-Compatible', content:'ie=edge' },
 
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { hid: 'description', name: 'description', content: '最新消息，本司于2009年经营第三分摇彩平台至今，一贯秉持公正，公开，创新三大理念！是崭新且公正的第三方摇彩平台！' },
+             { hid: 'keywords', name: 'keywords', content: '亚洲娱乐网,最新消息' },
+
+    ],
+  },
   data() {
     return {
       didLoad: false,
@@ -121,9 +132,22 @@ export default {
     margin: 2rem auto;
   }
   .table-sm td {
-    padding: 0.3rem;
+    padding: 1rem 0.3rem;
     color: white;
 }
+ @media (max-width: 767.9px) {
+      .table-sm td {
+        display: block;
+        border: none;
+        padding: 0.1rem .3rem;
+        &:nth-child(3) {
+          border-bottom: 1px solid #dee2e6;
+        }
+      }
+      .table thead th {
+        display: block;
+      }
+    }
   .table {
     th {
       color: white;

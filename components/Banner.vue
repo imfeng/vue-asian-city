@@ -2,7 +2,7 @@
   <section class="banner-cont container-fluid">
     <div class="banner-bg-img"></div>
     <div class="business-bg-img"></div>
-    <!-- <img class="banner-img" src="../assets/images/banner-cn2.jpg" /> -->
+    <img class="banner-img" src="../assets/images/banner-cn.jpg" alt="亚洲娱乐网 vv7978.com"/>
   </section>
 </template>
 
@@ -11,6 +11,11 @@
   .banner-cont {
     .banner-img {
       width: 100%;
+      z-index: 0;
+      position: absolute;
+      opacity: 0;
+      width: 1px;
+      height: 1px;
     }
     .banner-bg-img {
       min-height: 570px;
@@ -52,7 +57,7 @@
       }
       .banner-bg-img {
         min-height: 290px;
-        background-image: url('../assets/images/banner-cn2.jpg');
+        background-image: url('../assets/images/banner-cn.jpg');
         background-position: center center;
         
       }

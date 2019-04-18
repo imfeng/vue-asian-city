@@ -2,7 +2,7 @@
   <div class="col-lg-4 ltt-cont" :key="gameId">
     <div class="agileits-services-grids mt-lg-0 mt-md-0 mt-5">
       <template v-if="!didLoad">
-        <b-spinner class="ltt-spinner" variant="primary" label="Spinning"></b-spinner>
+        <b-spinner class="ltt-spinner" variant="primary" :label="this.title"></b-spinner>
       </template>
       <template v-else>
         <p class="ltt-seris">{{item.expect}}</p>
@@ -16,7 +16,7 @@
         </div>
         <h4 class="ltt-title mt-4 mb-1">
 
-          {{$t(item.title)}}<img class="countdown-img" :src="item.cimg" />
+          {{$t(item.title)}}<img class="countdown-img" :src="item.cimg" :alt="this.title + '-' + this.interval"/>
 
         </h4>
 
@@ -73,6 +73,7 @@ export default {
     return {
       opt: {},
       $ball: {},
+      // interval: 75,
       isRotating: false,
       intervalIns: null,
       audio: {},

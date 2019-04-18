@@ -51,6 +51,7 @@ module.exports = {
   */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
+    '@nuxtjs/sitemap',
     '@nuxtjs/axios',
     '@nuxtjs/proxy',
     ['nuxt-fontawesome', {
@@ -130,7 +131,7 @@ module.exports = {
     proxyHeaders: false,
     credentials: false,
     // See https://github.com/nuxt-community/axios-module#options
-    baseURL: 'http://vv16888.net',
+    baseURL: 'https://vv16888.net',
     // proxyHeaders: false,
     // credentials: false
   },
@@ -229,6 +230,112 @@ module.exports = {
       '/jp/lotto/亚洲时时彩-D1-75',
       '/jp/lotto/亚洲时时彩-D2-120',
       '/jp/lotto/亚洲时时彩-D3-300',
+    ]
+  },
+  sitemap: {
+    path: 'C:/Users/Feng/Desktop/product/imfeng/VUE/vue-asian-city/dist/sitemap.xml', // sitemap名稱，不用改
+    hostname: 'https://vv7978.com/', // 網址
+    cacheTime: 1000 * 60 * 15, // 站點路由更新頻率，只在 generate: false有用
+    gzip: true, // 生成 .xml.gz 檔的 sitemap
+    generate: true, // 允許使用 nuxt generate 生成
+    // 排除不要的頁面路由
+    exclude: [
+      '/secret',
+      '/admin/**',
+      '/_nuxt/**'
+    ],
+    defaults: {
+      changefreq: 'daily',
+      priority: 0.9,
+      lastmod: new Date(),
+      lastmodrealtime: true
+    },
+    // 靜態頁面路徑
+    routes: [
+      {
+        url: '/',
+        changefreq: 'daily', // 可能變更的頻率
+        priority: 1, // 網頁的重要程度，0.1 - 1
+        keywords: '亚洲赛车,北京赛车,极速赛车,PK拾,开奖网,摇彩网,亚洲娱乐网,亚洲,娱乐,彩球',
+        lastmodISO: new Date(),
+        links: [
+          { lang: 'cn', url: '/cn/', },
+          { lang: 'en', url: '/en/', },
+          { lang: 'ja', url: '/jp/', },
+        ],
+      },
+      {
+        url: '/cn/news',
+        changefreq: 'daily', // 可能變更的頻率
+        priority: 0.7, // 網頁的重要程度，0.1 - 1
+        keywords: '最新消息,亚洲娱乐网,亚洲,娱乐,彩球',
+        lastmodISO: new Date(),
+        links: [
+          { lang: 'cn', url: '/cn/news/', },
+          { lang: 'en', url: '/en/news/', },
+          { lang: 'ja', url: '/jp/news/', },
+        ],
+      },
+      {
+        url: '/cn/about',
+        changefreq: 'monthly', // 可能變更的頻率
+        priority: 0.5, // 網頁的重要程度，0.1 - 1
+        keywords: '关于我们,亚洲娱乐网,亚洲,娱乐,彩球',
+        lastmodISO: new Date(),
+        links: [
+          { lang: 'cn', url: '/cn/about/', },
+          { lang: 'en', url: '/en/about/', },
+          { lang: 'ja', url: '/jp/about/', },
+        ],
+      },
+      { url: '/cn/lotto/亚洲赛车-A1-75', keywords: '亚洲赛车' },
+      { url: '/cn/lotto/亚洲赛车-A2-120', keywords: '亚洲赛车' },
+      { url: '/cn/lotto/亚洲赛车-A3-300', keywords: '亚洲赛车' },
+      { url: '/cn/lotto/亚洲飞艇-B1-75', keywords: '亚洲飞艇' },
+      { url: '/cn/lotto/亚洲飞艇-B2-120', keywords: '亚洲飞艇' },
+      { url: '/cn/lotto/亚洲飞艇-B3-300', keywords: '亚洲飞艇' },
+      { url: '/cn/lotto/亚洲快3-C1-75', keywords: '亚洲快3' },
+      { url: '/cn/lotto/亚洲快3-C2-120', keywords: '亚洲快3' },
+      { url: '/cn/lotto/亚洲快3-C3-300', keywords: '亚洲快3' },
+      { url: '/cn/lotto/亚洲快3-C1-75', keywords: '亚洲快3' },
+      { url: '/cn/lotto/亚洲快3-C2-120', keywords: '亚洲快3' },
+      { url: '/cn/lotto/亚洲快3-C3-300', keywords: '亚洲快3' },
+      { url: '/cn/lotto/亚洲时时彩-D1-75', keywords: '亚洲时时彩' },
+      { url: '/cn/lotto/亚洲时时彩-D2-120', keywords: '亚洲时时彩' },
+      { url: '/cn/lotto/亚洲时时彩-D3-300', keywords: '亚洲时时彩' },
+      { url: '/en/lotto/亚洲赛车-A1-75', keywords: '亚洲赛车' },
+      { url: '/en/lotto/亚洲赛车-A2-120', keywords: '亚洲赛车' },
+      { url: '/en/lotto/亚洲赛车-A3-300', keywords: '亚洲赛车' },
+      { url: '/en/lotto/亚洲飞艇-B1-75', keywords: '亚洲飞艇' },
+      { url: '/en/lotto/亚洲飞艇-B2-120', keywords: '亚洲飞艇' },
+      { url: '/en/lotto/亚洲飞艇-B3-300', keywords: '亚洲飞艇' },
+      { url: '/en/lotto/亚洲快3-C1-75', keywords: '亚洲快3' },
+      { url: '/en/lotto/亚洲快3-C2-120', keywords: '亚洲快3' },
+      { url: '/en/lotto/亚洲快3-C3-300', keywords: '亚洲快3' },
+      { url: '/en/lotto/亚洲快3-C1-75', keywords: '亚洲快3' },
+      { url: '/en/lotto/亚洲快3-C2-120', keywords: '亚洲快3' },
+      { url: '/en/lotto/亚洲快3-C3-300', keywords: '亚洲快3' },
+      { url: '/en/lotto/亚洲时时彩-D1-75', keywords: '亚洲时时彩' },
+      { url: '/en/lotto/亚洲时时彩-D2-120', keywords: '亚洲时时彩' },
+      { url: '/en/lotto/亚洲时时彩-D3-300', keywords: '亚洲时时彩' },
+  //     /* */
+
+      { url: '/jp/lotto/亚洲赛车-A1-75', keywords: '亚洲赛车' },
+      { url: '/jp/lotto/亚洲赛车-A2-120', keywords: '亚洲赛车' },
+      { url: '/jp/lotto/亚洲赛车-A3-300', keywords: '亚洲赛车' },
+      { url: '/jp/lotto/亚洲飞艇-B1-75', keywords: '亚洲飞艇' },
+      { url: '/jp/lotto/亚洲飞艇-B2-120', keywords: '亚洲飞艇' },
+      { url: '/jp/lotto/亚洲飞艇-B3-300', keywords: '亚洲飞艇' },
+      { url: '/jp/lotto/亚洲快3-C1-75', keywords: '亚洲快3' },
+      { url: '/jp/lotto/亚洲快3-C2-120', keywords: '亚洲快3' },
+      { url: '/jp/lotto/亚洲快3-C3-300', keywords: '亚洲快3' },
+      { url: '/jp/lotto/亚洲快3-C1-75', keywords: '亚洲快3' },
+      { url: '/jp/lotto/亚洲快3-C2-120', keywords: '亚洲快3' },
+      { url: '/jp/lotto/亚洲快3-C3-300', keywords: '亚洲快3' },
+      { url: '/jp/lotto/亚洲时时彩-D1-75', keywords: '亚洲时时彩' },
+      { url: '/jp/lotto/亚洲时时彩-D2-120', keywords: '亚洲时时彩' },
+      { url: '/jp/lotto/亚洲时时彩-D3-300', keywords: '亚洲时时彩' },
+
     ]
   }
 }

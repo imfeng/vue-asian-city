@@ -95,13 +95,15 @@
 export default {
   head () {
     return {
-      title: '亚洲娱乐网 - ' + this.title,
+      title: '亚洲娱乐网 - ' + this.title + ' - ' + this.interval + 's',
       meta: [
         { charset: 'utf-8' },
         { 'http-equiv': 'X-UA-Compatible', content:'ie=edge' },
 
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { hid: 'description', name: 'description', content: this.title + '祝您中奖' }
+        { hid: 'description', name: 'description', content: this.title + '祝您中奖，好处多多。开奖器采用美商Smartplay Inc生产之乱数产生器，每季都有专员检验查核，本司为业界最公正的第三方开奖平台！' },
+
+        { hid: 'keywords', name: 'keywords', content: this.title + ',开奖网,摇彩网,亚洲娱乐网' }
       ],
 
       script: [

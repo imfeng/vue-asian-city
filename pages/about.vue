@@ -49,12 +49,10 @@ export default {
       { 'http-equiv': 'X-UA-Compatible', content:'ie=edge' },
 
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '关于我们' }
+      { hid: 'description', name: 'description', content: '关于我们，本公司于2017022正式营运，是崭新且公正的第三方摇彩平台，本司于2009年经营第三分摇彩平台至今，一贯秉持公正，公开，创新三大理念！' },
+             { hid: 'keywords', name: 'keywords', content: '亚洲娱乐网,关于我们' },
+
     ],
-
-    script: [
-
-    ]
   },
   components: {
     Banner
