@@ -242,12 +242,17 @@ nav ul ul li a {
 
 nav ul ul ul li {
     position: relative;
-    top: -60px;
+    /* top: -60px; */
     /* has to be the same number as the "width" of "nav ul ul li" */
-    left: 170px;
+    /* left: 170px; */
 }
 
-
+/* ul.navbar-nav {
+    
+}
+ul.navbar-nav .dropdown-menu.submenu .dropdown-item {
+    padding: .55rem 1rem;
+} */
 /* Change ' +' in order to change the Dropdown symbol */
 
 li > a:only-child:after {

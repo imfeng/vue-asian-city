@@ -15,62 +15,6 @@
               <no-ssr>
                 <b-nav-item-dropdown :text="$t('彩种')" right>
                   <li class="dropdown-submenu">
-                    <a class="dropdown-item dropdown-toggle">{{ $t('南韩赛车') }}</a>
-                    <ul class="dropdown-menu submenu">
-                      <b-dropdown-item :to="`/${$i18n.locale}/lotto/南韩赛车-A1-75`"
-                        >{{ $t('南韩赛车') }} - 75s</b-dropdown-item
-                      >
-                      <b-dropdown-item :to="`/${$i18n.locale}/lotto/南韩赛车-A2-120`"
-                        >{{ $t('南韩赛车') }} - 120s</b-dropdown-item
-                      >
-                      <b-dropdown-item :to="`/${$i18n.locale}/lotto/南韩赛车-A3-300`"
-                        >{{ $t('南韩赛车') }} - 300s</b-dropdown-item
-                      >
-                    </ul>
-                  </li>
-                  <li class="dropdown-submenu">
-                    <a class="dropdown-item dropdown-toggle">{{ $t('南韩飞艇') }}</a>
-                    <ul class="dropdown-menu submenu">
-                      <b-dropdown-item :to="`/${$i18n.locale}/lotto/南韩飞艇-B1-75`"
-                        >{{ $t('南韩飞艇') }} - 75s</b-dropdown-item
-                      >
-                      <b-dropdown-item :to="`/${$i18n.locale}/lotto/南韩飞艇-B2-120`"
-                        >{{ $t('南韩飞艇') }} - 120s</b-dropdown-item
-                      >
-                      <b-dropdown-item :to="`/${$i18n.locale}/lotto/南韩飞艇-B3-300`"
-                        >{{ $t('南韩飞艇') }} - 300s</b-dropdown-item
-                      >
-                    </ul>
-                  </li>
-                  <li class="dropdown-submenu">
-                    <a class="dropdown-item dropdown-toggle">{{ $t('南韩快3') }}</a>
-                    <ul class="dropdown-menu submenu">
-                      <b-dropdown-item :to="`/${$i18n.locale}/lotto/南韩快3-C1-75`"
-                        >{{ $t('南韩快3') }} - 75s</b-dropdown-item
-                      >
-                      <b-dropdown-item :to="`/${$i18n.locale}/lotto/南韩快3-C2-120`"
-                        >{{ $t('南韩快3') }} - 120s</b-dropdown-item
-                      >
-                      <b-dropdown-item :to="`/${$i18n.locale}/lotto/南韩快3-C3-300`"
-                        >{{ $t('南韩快3') }} - 300s</b-dropdown-item
-                      >
-                    </ul>
-                  </li>
-                  <li class="dropdown-submenu">
-                    <a class="dropdown-item dropdown-toggle">{{ $t('南韩时时彩') }}</a>
-                    <ul class="dropdown-menu submenu">
-                      <b-dropdown-item :to="`/${$i18n.locale}/lotto/南韩时时彩-D1-75`"
-                        >{{ $t('南韩时时彩') }} - 75s</b-dropdown-item
-                      >
-                      <b-dropdown-item :to="`/${$i18n.locale}/lotto/南韩时时彩-D2-120`"
-                        >{{ $t('南韩时时彩') }} - 120s
-                      </b-dropdown-item>
-                      <b-dropdown-item :to="`/${$i18n.locale}/lotto/南韩时时彩-D3-300`"
-                        >{{ $t('南韩时时彩') }} - 300s
-                      </b-dropdown-item>
-                    </ul>
-                  </li>
-                  <li class="dropdown-submenu">
                     <a class="dropdown-item dropdown-toggle">{{ $t('南韩11选5') }}</a>
                     <ul class="dropdown-menu submenu">
                       <b-dropdown-item :to="`/${$i18n.locale}/lotto/南韩11选5-E1-75`"
@@ -84,19 +28,25 @@
                       </b-dropdown-item>
                     </ul>
                   </li>
+                  <li v-for="(item, idx) in LottoInfoGroupList" :key="idx">
+                    <a class="dropdown-item dropdown-toggle">{{ $t(item.title) }}</a>
+                    <ul class="dropdown-menu submenu">
+                      <b-dropdown-item
+                        v-for="(sub, subIdx) in item.subs"
+                        :key="subIdx"
+                        :to="`/${$i18n.locale}/lotto/${sub.title}-${sub.gameId}-${sub.interval}`"
+                        >{{ $t(sub.title) }} - {{ sub.interval }}s</b-dropdown-item
+                      >
+                    </ul>
+                  </li>
                 </b-nav-item-dropdown>
               </no-ssr>
 
-              <b-nav-item-dropdown :text="$t('语言')" right>
+              <!-- <b-nav-item-dropdown :text="$t('语言')" right>
                 <b-dropdown-item :to="localePath('index', 'cn')">CN</b-dropdown-item>
                 <b-dropdown-item :to="localePath('index', 'en')">EN</b-dropdown-item>
                 <b-dropdown-item :to="localePath('index', 'jp')">JP</b-dropdown-item>
-                <!-- :active="(el.code === locale)" -->
-
-                <!-- <b-dropdown-item v-for="el in locales" :key="el.code" @click="switchLanguage(el.code)">
-                  {{ el.name }}
-                </b-dropdown-item> -->
-              </b-nav-item-dropdown>
+              </b-nav-item-dropdown> -->
             </b-navbar-nav>
           </b-collapse>
         </b-navbar>
@@ -107,7 +57,14 @@
 </template>
 <script>
 import Vue from 'vue'
+import { LottoInfoGroupList } from '~/config/def.js'
+
 export default {
+  data() {
+    return {
+      LottoInfoGroupList
+    }
+  },
   mounted() {
     $(document).ready(function() {
       $('#nav-collapse li.dropdown-submenu').each(function(ev) {
@@ -160,11 +117,14 @@ export default {
       }
     }
   }
+  .dropdown-menu {    
+    min-width: 12rem;
+  }
   .dropdown-submenu {
     width: 100%;
     position: relative;
     .dropdown-item {
-      padding: 0.55rem 1.5rem;
+      padding: 0.55rem 0.6rem;
     }
   }
   .dropdown-item.dropdown-toggle {
