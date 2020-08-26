@@ -3,6 +3,7 @@
 #282828*/
 @import url(//fonts.googleapis.com/earlyaccess/notosansscsliced.css);
 /* @import url('./bootstrap-theme.scss'); */
+@import '~/assets/config.scss';
 
 .btn-circle {
     width: 30px;
@@ -15,6 +16,9 @@
   }
 .container-fluid {
     padding: 0;
+}
+html, body {
+    overflow-x: hidden;
 }
 html {
   scroll-behavior: smooth;
@@ -126,7 +130,7 @@ header {
     /* position: absolute; */
     z-index: 9;
     width: 100%;
-    background: #0f1314;
+    background: #000520;
     padding: 1em 0;
 }
 .container {
@@ -223,7 +227,7 @@ nav ul li:hover > ul {
 /* Fisrt Tier Dropdown */
 
 nav ul ul li {
-    width: 170px;
+    width: 210px;
     float: none;
     display: list-item;
     position: relative;
@@ -498,7 +502,7 @@ h3.heading,h2.heading {
     font-size: 2em;
     font-weight: 500;
     /* color: #3e3e3e; */
-    color: #ffd708;
+    color: $text-main-title-color;
 }
 h1.heading {
     font-size: 3.25em;
@@ -676,7 +680,7 @@ ul.social_section_1info a:hover {
 	-webkit-box-shadow: none;
 	border-bottom: 1px;
 	border-style: none none solid none;
-	border-color:#ffd708;
+	border-color: $text-title-color;
 }
 
 .form-group .form-control:focus {
@@ -1172,3 +1176,24 @@ a.banner-button, button.submit {
         -moz-transform: rotate(359deg);
     }
 }
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 7px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #e0e0e0;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgb(34, 75, 137)
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(103, 103, 103);
+  }

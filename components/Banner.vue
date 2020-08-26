@@ -1,8 +1,8 @@
 <template>
   <section class="banner-cont container-fluid">
     <div class="banner-bg-img"></div>
-    <div class="business-bg-img"></div>
-    <img class="banner-img" src="../assets/images/banner-cn.jpg" alt="南韩娱乐网 vv7978.com" />
+    <img class="banner-img" src="../assets/images/banner-cn.jpg" alt="南韩娱乐网 korea7227.com" />
+    <!-- <div class="business-bg-img"></div> -->
   </section>
 </template>
 
@@ -49,8 +49,8 @@
   .banner-cont {
     overflow: hidden;
     .banner-img {
-      width: auto;
-      height: 270px;
+      // width: auto;
+      // height: 270px;
       margin: 0 auto;
       // transform: translateX(-50%);
     }

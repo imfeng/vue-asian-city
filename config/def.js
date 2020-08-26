@@ -7,8 +7,10 @@ export const LottoInfoList = [
   { gameId: 'e8ea3', title: '南韩快3', interval: '120' },
   { gameId: '9df2f', title: '南韩时时彩', interval: '75' },
   { gameId: '96fe1', title: '南韩时时彩', interval: '120' },
-  { gameId: '41665', title: '南韩11选5', interval: '75' },
-  { gameId: 'e69ba', title: '南韩11选5', interval: '120' }
+  // { gameId: '41665', title: '南韩11选5', interval: '75' },
+  // { gameId: 'e69ba', title: '南韩11选5', interval: '120' },
+  { gameId: '41665', title: '南韩快乐十分', interval: '75' },
+  { gameId: 'e69ba', title: '南韩快乐十分', interval: '120' },
 ]
 export const LottoInfoGroupList = [
   {

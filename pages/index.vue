@@ -87,11 +87,13 @@ export default {
 </script>
 
 <style lang="scss">
+@import '~/assets/config.scss';
+
 section.logos {
   .heading {
     margin: 1rem 0;
   }
-  background: #212121;
+  background: #16171e;
   // overflow: hidden;
   // max-height: 170px;
   text-align: center;
@@ -117,7 +119,7 @@ section.logos {
 }
 .content {
   /* background-color:  #0f1314; */
-  background-color: #1a120f;
+  background-color: $bg-color;
 }
 @media (max-width: 767.9px) {
   section.logos {

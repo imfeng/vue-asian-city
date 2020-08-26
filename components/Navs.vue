@@ -9,36 +9,88 @@
 
           <b-collapse id="nav-collapse" is-nav>
             <b-navbar-nav>
-              <b-nav-item :to="localePath('index')">{{ $t('首页') }}</b-nav-item>
+              <b-nav-item :to="localePath('/')">{{ $t('首页') }}</b-nav-item>
               <!-- <b-nav-item :to="localePath('news')">{{ $t('最新消息') }}</b-nav-item> -->
-              <b-nav-item :to="localePath('about')">{{ $t('关于我们') }}</b-nav-item>
+              <b-nav-item :to="localePath('/about')">{{ $t('关于我们') }}</b-nav-item>
               <no-ssr>
                 <b-nav-item-dropdown :text="$t('彩种')" right>
                   <li class="dropdown-submenu">
-                    <a class="dropdown-item dropdown-toggle">{{ $t('南韩11选5') }}</a>
+                    <a class="dropdown-item dropdown-toggle">{{ $t('南韩赛车') }}</a>
                     <ul class="dropdown-menu submenu">
-                      <b-dropdown-item :to="`/${$i18n.locale}/lotto/南韩11选5-E1-75`"
-                        >{{ $t('南韩11选5') }} - 75s
+                      <b-dropdown-item :to="`/lotto/a1fb5-75`"
+                        >{{ $t('南韩赛车') }} - 75s
                       </b-dropdown-item>
-                      <b-dropdown-item :to="`/${$i18n.locale}/lotto/南韩11选5-E2-120`"
-                        >{{ $t('南韩11选5') }} - 120s
-                      </b-dropdown-item>
-                      <b-dropdown-item :to="`/${$i18n.locale}/lotto/南韩11选5-E3-300`"
-                        >{{ $t('南韩11选5') }} - 300s
+                      <b-dropdown-item :to="`/lotto/83cbc-120`"
+                        >{{ $t('南韩赛车') }} - 120s
                       </b-dropdown-item>
                     </ul>
                   </li>
-                  <li v-for="(item, idx) in LottoInfoGroupList" :key="idx">
+                  <li class="dropdown-submenu">
+                    <a class="dropdown-item dropdown-toggle">{{ $t('南韩飞艇') }}</a>
+                    <ul class="dropdown-menu submenu">
+                      <b-dropdown-item :to="`/lotto/e591a-75`"
+                        >{{ $t('南韩飞艇') }} - 75s
+                      </b-dropdown-item>
+                      <b-dropdown-item :to="`/lotto/404a8-120`"
+                        >{{ $t('南韩飞艇') }} - 120s
+                      </b-dropdown-item>
+                    </ul>
+                  </li>
+                  <li class="dropdown-submenu">
+                    <a class="dropdown-item dropdown-toggle">{{ $t('南韩快3') }}</a>
+                    <ul class="dropdown-menu submenu">
+                      <b-dropdown-item :to="`/lotto/0f80b-75`"
+                        >{{ $t('南韩快3') }} - 75s
+                      </b-dropdown-item>
+                      <b-dropdown-item :to="`/lotto/e8ea3-120`"
+                        >{{ $t('南韩快3') }} - 120s
+                      </b-dropdown-item>
+                    </ul>
+                  </li>
+                  <li class="dropdown-submenu">
+                    <a class="dropdown-item dropdown-toggle">{{ $t('南韩时时彩') }}</a>
+                    <ul class="dropdown-menu submenu">
+                      <b-dropdown-item :to="`/lotto/9df2f-75`"
+                        >{{ $t('南韩时时彩') }} - 75s
+                      </b-dropdown-item>
+                      <b-dropdown-item :to="`/lotto/96fe1-120`"
+                        >{{ $t('南韩时时彩') }} - 120s
+                      </b-dropdown-item>
+                    </ul>
+                  </li>
+                  <!-- <li class="dropdown-submenu">
+                    <a class="dropdown-item dropdown-toggle">{{ $t('南韩11选5') }}</a>
+                    <ul class="dropdown-menu submenu">
+                      <b-dropdown-item :to="`/lotto/南韩11选5-41665-75`"
+                        >{{ $t('南韩11选5') }} - 75s
+                      </b-dropdown-item>
+                      <b-dropdown-item :to="`/lotto/南韩11选5-e69ba-120`"
+                        >{{ $t('南韩11选5') }} - 120s
+                      </b-dropdown-item>
+                    </ul>
+                  </li> -->
+                  <li class="dropdown-submenu">
+                    <a class="dropdown-item dropdown-toggle">{{ $t('南韩快乐十分') }}</a>
+                    <ul class="dropdown-menu submenu">
+                      <b-dropdown-item :to="`/lotto/41665-75`"
+                        >{{ $t('南韩快乐十分') }} - 75s
+                      </b-dropdown-item>
+                      <b-dropdown-item :to="`/lotto/e69ba-120`"
+                        >{{ $t('南韩快乐十分') }} - 120s
+                      </b-dropdown-item>
+                    </ul>
+                  </li>
+                  <!-- <li v-for="(item, idx) in LottoInfoGroupList" :key="idx">
                     <a class="dropdown-item dropdown-toggle">{{ $t(item.title) }}</a>
                     <ul class="dropdown-menu submenu">
                       <b-dropdown-item
                         v-for="(sub, subIdx) in item.subs"
                         :key="subIdx"
-                        :to="`/${$i18n.locale}/lotto/${sub.title}-${sub.gameId}-${sub.interval}`"
+                        :to="`/lotto/${sub.title}-${sub.gameId}-${sub.interval}`"
                         >{{ $t(sub.title) }} - {{ sub.interval }}s</b-dropdown-item
                       >
                     </ul>
-                  </li>
+                  </li> -->
                 </b-nav-item-dropdown>
               </no-ssr>
 
@@ -86,6 +138,9 @@ export default {
     // });
   },
   methods: {
+    localePath(t) {
+      return t
+    },
     submenu: function() {},
     switchLanguage(localeCode) {
       document.cookie = `locale=${localeCode}`
@@ -98,6 +153,8 @@ export default {
 }
 </script>
 <style lang="scss">
+@import '~/assets/config.scss';
+
 #main-nav {
   .dropdown-item:hover,
   .dropdown-item:focus {
@@ -121,7 +178,7 @@ export default {
     min-width: 12rem;
   }
   .dropdown-submenu {
-    width: 100%;
+    max-width: 100%;
     position: relative;
     .dropdown-item {
       padding: 0.55rem 0.6rem;
@@ -158,7 +215,7 @@ export default {
     letter-spacing: 0.2em;
     &:hover,
     &:focus {
-      color: #ffd709;
+      color: $text-hover-color;
     }
   }
   .navbar-toggler {

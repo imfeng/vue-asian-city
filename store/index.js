@@ -3,14 +3,14 @@ export const state = () => ({
       code: 'cn',
       name: 'CN'
     },
-    {
-      code: 'en',
-      name: 'EN'
-    },
-    {
-      code: 'jp',
-      name: 'JP'
-    }
+    // {
+    //   code: 'en',
+    //   name: 'EN'
+    // },
+    // {
+    //   code: 'jp',
+    //   name: 'JP'
+    // }
   ],
   locale: 'cn'
 });

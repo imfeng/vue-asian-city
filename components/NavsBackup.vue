@@ -116,6 +116,8 @@ export default {
 }
 </script>
 <style lang="scss">
+@import '~/assets/config.scss';
+
 #main-nav {
   .dropdown-item:hover,
   .dropdown-item:focus {
@@ -173,7 +175,7 @@ export default {
     letter-spacing: 0.2em;
     &:hover,
     &:focus {
-      color: #ffd709;
+      color: $text-hover-color;
     }
   }
   .navbar-toggler {

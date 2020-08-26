@@ -17,7 +17,7 @@
                   </span>
                 </h4>
                 <div v-bind:id="'balls-' + gameId" class="balls small-12 medium-3 columns">
-                  <div class="ball stand yellow" v-for="(code, idx) in item.codes" :key="idx">
+                  <div class="ball stand blue" v-for="(code, idx) in item.codes" :key="idx">
                     <div>
                       <span>{{ code }}</span>
                     </div>
@@ -82,7 +82,7 @@
         <!--Table-->
       </div>
       <div class="ctrl-btns">
-        <b-button @click="getHistories" class="btn-more" size="lg" variant="dark">{{ $t('查看更多') }}</b-button>
+        <b-button v-if="historyCnt < 100" @click="getHistories" class="btn-more" size="lg" variant="dark">{{ $t('查看更多') }}</b-button>
         <!-- <b-button block variant="primary">查看更多...</b-button> -->
       </div>
     </section>
@@ -92,6 +92,8 @@
 <script>
 // import Logo from '~/components/Logo.vue';
 // import LottoSingle  from '~/components/LottoSingle.vue';
+import { LottoInfoList } from '~/config/def.js';
+
 export default {
   head() {
     return {
@@ -144,7 +146,8 @@ export default {
         return
       }
       this.item.opentime = this.item.opentime.replace(/-/g, '/')
-      let expireTime = new Date(this.item.opentime).getTime() + this.item.interval * 1000
+      let expireTime = new Date(this.item.opentime).getTime() + this.interval * 1000
+      console.log(expireTime)
       let now = new Date().getTime()
 
       this.countdownRemain = expireTime - now
@@ -295,13 +298,14 @@ export default {
     // this.updateApi();
   },
   mounted: function() {
-    console.log('===========mounted============')
-    console.log(this.$route.params)
-    const [slug, id, interval] = this.$route.params['id'].split('-')
+    // console.log('===========mounted============')
+    // console.log(this.$route.params)
+    const [id, interval] = this.$route.params['id'].split('-')
+    const item = LottoInfoList.find(lot => lot.gameId === id) || {};
     this.gameId = id
-    this.title = slug
-    this.interval = interval
-    ;(this.logo = ''), // require('../../assets/images/' + this.$route.params['id'] + '.png')
+    this.title = item.title;
+    this.interval = parseInt(interval);
+    this.logo = require('../../assets/images/' + this.$route.params['id'] + '.png');
       //* combine api countdown beep
       this.updateApi()
     let audio = new Audio(require('../../static/beep.mp3'))
@@ -324,6 +328,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import '~/assets/config.scss';
 #page-lotto {
   .banner-bg-img {
     min-height: 640px;
@@ -472,7 +477,7 @@ export default {
       }
     }
     &.blue {
-      background: linear-gradient(to right, #536976, #292e49);
+      background: $dice-bg-blue;
     }
     &.red {
       background: linear-gradient(to right, #da4453, #89216b);
@@ -486,6 +491,9 @@ export default {
     &.grey {
       background: linear-gradient(to right, #5c5c5c, #3d3d3d);
     }
+  }
+  .table-responsive {
+    overflow: hidden;
   }
 }
 </style>

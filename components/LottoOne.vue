@@ -24,7 +24,7 @@
 
         <div v-if="item.codes" class="row">
           <div v-bind:id="'balls-'+gameId" class="small-12 medium-3 columns">
-            <div class="ball yellow" v-for="(code, idx) in item.codes" :key="idx">
+            <div class="ball blue" v-for="(code, idx) in item.codes" :key="idx">
               <div>
                 <span>{{code}}</span>
               </div>
@@ -113,7 +113,7 @@ export default {
     counting: function() {
       if(!this.item.opentime) { return; }
       this.item.opentime = this.item.opentime.replace(/-/g,'/');
-      let expireTime = new Date(this.item.opentime).getTime() + this.item.interval * 1000;
+      let expireTime = new Date(this.item.opentime).getTime() + this.interval * 1000;
       let now = new Date().getTime();
       this.countdownRemain = expireTime - now;
       //? seems no need excepttion handler, itll back to here  :bind=opentime
@@ -246,10 +246,13 @@ export default {
 </script>
 
 <style lang="scss">
+@import '~/assets/config.scss';
+
 .ltt-cont {
   margin-top: 2.5rem;
 }
 .agileits-services-grids {
+  min-height: 380px;
   position: relative;
   background: rgba(255, 255, 255, 0.86);
   box-shadow: 0px 0px 9px 3px rgba(255, 255, 255, 0.57),
@@ -259,7 +262,7 @@ export default {
   border-radius: 6px;
 }
 .ltt-spinner.text-primary {
-  color: #ccb520 !important;
+  color: #2084cc !important;
 }
 .ltt-icons {
   /* float: right; */
@@ -287,7 +290,7 @@ export default {
   font-size: 1.2rem;
 }
 .ltt-seris-desc {
-  font-size: 0.5rem;
+  font-size: 0.9rem;
 }
 .countdown-img {
   // position: absolute;
@@ -305,7 +308,7 @@ h4.ltt-title {
   line-height: 1;
   text-transform: CAPITALIZE;
   letter-spacing: -0.015em;
-  color: #ccb520;
+  color: $text-title-color;
   text-shadow: -2px 0px 5px #f6f2d5;
 }
 
@@ -400,7 +403,7 @@ $lottoball: 40px;
       }
     }
     &.blue {
-      background: linear-gradient(to right, #536976, #292e49);
+      background: $dice-bg-blue;
     }
     &.red {
       background: linear-gradient(to right, #da4453, #89216b);
@@ -409,7 +412,7 @@ $lottoball: 40px;
       background: linear-gradient(to right, #00b09b, #96c93d);
     }
     &.yellow {
-      background: linear-gradient(to right, #ffe259, #ffa751);
+      background: $dice-bg-yellow;
     }
   }
 

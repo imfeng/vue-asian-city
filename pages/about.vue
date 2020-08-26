@@ -4,21 +4,24 @@
     <section class="container-fluid">
       <div class="agileits-services" id="services">
         <h2 class="heading text-capitalize">关于我们</h2>
-        <div class="video">
+        <!-- <div class="video">
           <video autoplay preload="auto" loop>
             <source src="../assets/lotto.mp4" type="video/mp4" />
             Your browser does not support HTML5 video.
           </video>
-        </div>
+        </div> -->
         <div class="content">
           <ol class="tt">
-            <li>{{ $t('ABOUT_ME_1') }}</li>
+            <p>南韓 Gaming是一家致力於提供方便的博弈遊戲娛樂平台公司，藉由提供的平台讓經營者可以快速且安全的提供給玩家各種娛樂的選擇。南韓 Gaming定位為平台系統與遊戲提供商，採B2B商業模式，為客戶提供遊戲以及相關的系統平台，客戶為營運商，不直接面對第一線玩家。簡單說，南韓 Gaming建立的是一個"提供商品牌",而非第一線遊戲網站的營運商品牌。
+            </p>
+            <p>致力發展高畫質專業彩票平台,提供多元化視頻傳輸,憑藉著高頻率的開獎次數,中獎率高、玩法豐富、投注簡易以及準確度高達99.9%的開獎流程,南韓 Gaming的目標是建立一個公平、公正、公開的權威性全方面彩票平台給市場大眾。</p>
+            <!-- <li>{{ $t('ABOUT_ME_1') }}</li>
             <li>{{ $t('ABOUT_ME_2') }}</li>
             <li>{{ $t('ABOUT_ME_3') }}</li>
             <li>{{ $t('ABOUT_ME_4') }}</li>
             <li>{{ $t('ABOUT_ME_5') }}</li>
-            <li>{{ $t('ABOUT_ME_6') }}</li>
-            <div class="qrcodes row">
+            <li>{{ $t('ABOUT_ME_6') }}</li> -->
+            <!-- <div class="qrcodes row">
               <div class="col-md-4 col-sm-3">
                 <img src="../assets/qrcodes/line.jpg" alt="line qrcode" />
               </div>
@@ -28,7 +31,7 @@
               <div class="col-md-4 col-sm-3">
                 <img src="../assets/qrcodes/asian.jpg" alt="asian qrcode" />
               </div>
-            </div>
+            </div> -->
           </ol>
         </div>
       </div>
@@ -63,7 +66,15 @@ export default {
 </script>
 
 <style lang="scss">
+@import '~/assets/config.scss';
+
 #page-about {
+  p {
+    margin: 1rem auto;
+    text-align: left;
+    color: $text-color;
+    font-size: 1.2rem;
+  }
   .video {
     // max-width: 700px;
     max-height: 310px;
@@ -88,7 +99,7 @@ export default {
     }
   }
   .container-fluid {
-    background-color: #1a120f;
+    background-color: $bg-color;
   }
 
   .title {
